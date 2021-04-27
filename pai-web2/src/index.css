@@ -1,0 +1,400 @@
+@import url('http://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+*{
+  box-sizing: border-box;
+ 
+}
+
+body{
+  background: #1C8EF9;
+  min-height: 100vh;
+  display: flex;
+  font-weight: 400;
+  font-family: 'Fira Sans',sans-serif;
+
+  
+}
+
+h1,h2,h3,h4,h5,h6,label,span{
+  font-weight: 500;
+  font-family: 'Fira Sans',sans-serif;
+ 
+}
+
+body,html, .App, #root, .auth-wrapper{
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-light{
+  background-color: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34,35,58,0.2);
+}
+
+.auth-wrapper{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+/* 
+.form-group {
+  width: 450px;
+  margin: auto;
+  background-image: 'back.jpg';
+  background: #fff;
+  box-shadow: 0px 14px 80px rgba(34,35,58,0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all .3s;
+  
+} */
+
+.auth-inner form {
+  width: 450px;
+  margin: auto;
+  background-image: 'back.jpg';
+  background: #fff;
+  box-shadow: 0px 14px 80px rgba(34,35,58,0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all .3s;
+}
+
+.auth-wrapper .form-control:focus{
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+
+.formBtn button{
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  width: 300px;
+  margin-left: 40%;
+}
+.formBtnL button{
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+
+}
+
+.auth-wrapper h3{
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-lavel{
+  font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a{
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a{
+  color: #167bff;
+}
+
+
+.navbar {
+
+  background-color: rgb(208, 245, 208);
+  position: fixed; 
+  top: 0; 
+  left:0;
+  width: 100%; 
+  height: 80px;
+ 
+  
+}
+
+
+.navbar-brand
+{
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    margin-left: -65%;
+    
+    
+}
+.navbar-nav{
+  margin-left: 105%;
+}
+
+.nav li Link nav-link {
+  margin-left: -60%;
+  display: block;
+  line-height: 3em;
+  width: 100%;
+  text-decoration: none;
+  
+}
+
+
+
+/* table */
+.zui-table {
+  border: solid 1px #DDEEEE;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: normal 13px Arial, sans-serif;
+  
+}
+.zui-table thead th {
+  background-color: #DDEFEF;
+  border: solid 1px #DDEEEE;
+  color: #336B6B;
+  padding: 10px;
+  text-align: left;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.zui-table tbody td {
+  border: solid 1px #DDEEEE;
+  color: rgb(51, 51, 51);
+  padding: 10px;
+  text-shadow: 1px 1px 1px #fff;
+}
+.zui-table-highlight tbody tr:hover{
+  background-color: #CCE7E7;
+  cursor: pointer;
+  transition: 0.5s;
+  
+
+}
+
+.zui-table-highlight tbody tr:hover:after {
+    content:'Click it to join!';
+    position:absolute;
+    margin-left: -700px;
+    font-size: 12px;
+    color: blue;
+
+
+}
+
+
+
+
+
+/* without tips */
+.zuis-table {
+  border: solid 1px #DDEEEE;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: normal 13px Arial, sans-serif;
+  margin-left: -70%;
+  
+}
+.zuis-table thead th {
+  background-color: #DDEFEF;
+  border: solid 1px #DDEEEE;
+  color: #336B6B;
+  padding: 10px;
+  text-align: left;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.zuis-table tbody td {
+  border: solid 1px #DDEEEE;
+  color: rgb(51, 51, 51);
+  padding: 10px;
+  text-shadow: 1px 1px 1px #fff;
+}
+.zuis-table-highlight tbody tr:hover{
+  background-color: #CCE7E7;
+  cursor: pointer;
+  transition: 0.5s;
+  
+
+}
+.zuis-table-highlight tbody tr:hover:after {
+
+  position:absolute;
+  margin-left: -700px;
+  font-size: 12px;
+  color: blue;
+
+
+}
+
+.zuis-table-horizontal tbody td {
+  border-left: none;
+  border-right: none;
+}
+
+
+
+
+.zui-table-horizontal tbody td {
+  border-left: none;
+  border-right: none;
+}
+
+.Table__itemCount {
+  font-size: 14px;
+}
+
+.Table__pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 10px;
+}
+
+.Table__pageButton {
+  font-size: 15px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.Table__pageButton:disabled {
+  cursor: not-allowed;
+  color: gray;
+}
+
+.Table__pageButton--active {
+  color: #41819c;
+  font-weight: bold;
+
+}
+
+
+/* drop down menu */
+.dropdown-content {
+
+  position: fixed;
+  min-width: 160px;
+  cursor: pointer;
+  
+}
+
+.dropdown-menu>a:hover{
+  background-color: #CCE7E7;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+
+/* comments */
+.comments{
+  margin-left: 60%;
+  position: fixed;
+}
+
+.commentbox .form-element {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.commentbox .form-element textarea {
+
+  width: 500px;
+}
+
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.commentbox ul li.replying-to > div {
+  background: gray;
+}
+
+.commentbox ul li .comment-content {
+
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.commentbox ul li .comment-footer .timestamp {
+
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* text to delete */
+.h7{
+  color: rgb(105, 103, 103);
+  font-size: 25px;
+}
+
+/* dropDownMenu */
+.dropdown-content>.btn-primary{
+ 
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+
+}
+/* buttons create event */
+.form-row>.buttonW {
+
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  width: 80px;
+  height: 40px;
+  margin-top: 2.3%;
+  
+
+}
+@-webkit-keyframes fadeInOut {
+  0% {
+      opacity: 0;
+  }
+  16% {
+      opacity: 1;
+  }
+  84% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+@keyframes fadeInOut {
+  0% {
+      opacity: 0;
+  }
+  16% {
+      opacity: 1;
+  }
+  84% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+.message {
+  margin-left:-22%;
+  width: 500px;
+ 
+  opacity: 0;
+  text-align: center;
+  -webkit-animation: fadeInOut 3s;
+  animation: fadeInOut 3s;
+ 
+}
+
+
+/* comments */
