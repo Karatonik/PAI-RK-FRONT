@@ -5,11 +5,12 @@ import React, { Component } from 'react';
 export default class Home extends Component {
     
     render() {
+        const nick = localStorage.getItem('nick');
        
         
-        if(this.props.user){
+        if(nick){
             return(
-                <h2>Hi, {this.props.user.nick} </h2>
+                <h2>Hi, {nick} </h2>
                 
             )
             

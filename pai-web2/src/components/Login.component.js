@@ -19,8 +19,8 @@ export default class Login extends Component {
         axios.post('http://localhost:8080/api/auth/singin/',data).then(
             res =>{
                  localStorage.setItem('token',res.data.token);             
-                 localStorage.setItem('email',res.data.email);
-                 console.log(res);
+                 localStorage.setItem('email',res.data.email);             
+                 localStorage.setItem('nick',res.data.nick);
                 this.setState({
                     loggedIn:true
                     
@@ -31,6 +31,7 @@ export default class Login extends Component {
 
             }
         ).catch(err =>{
+            console.log(123);
             this.setState({errorMessage: err.message})
         })
     };

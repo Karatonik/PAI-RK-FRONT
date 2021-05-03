@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import LoginFb from './LoginFb.component';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Home from '@material-ui/icons/Home'
@@ -18,7 +19,7 @@ export default class Nav extends Component {
     };
     render() {
         let buttons;
-        if(this.props.user){
+        if(localStorage.getItem('token')){
             buttons =(
                 
                 <ul className = "navbar-nav">
@@ -40,11 +41,14 @@ export default class Nav extends Component {
             buttons =(
             <ul className = "navbar-nav ml-auto">
                 <li className = "nav-item">
-                    <Link to ={'/login'} className = "nav-link">Login</Link>
+                    <Link to ={'/login'} className = "nav-link">Log in</Link>
                 </li>
                 <li className = "nav-item">
                     <Link to ={'/register'} className = "nav-link">Sign up</Link>
                 </li>
+            <li>
+                <LoginFb/>
+            </li>
             </ul>
             )
         }

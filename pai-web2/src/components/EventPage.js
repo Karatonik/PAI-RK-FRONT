@@ -39,9 +39,9 @@ handleSubmit=e=>{
         'Content-Type': 'application/json',
         'Access-Control-Expose-Headers': 'Authorization'
     },
-   
+  
 };
-  axios.post('http://localhost:8080/api/user/rtje/'+email+'/'+eventID,config).then(
+  axios.post('http://localhost:8080/api/user/rtje/'+email+'/'+eventID).then(
      res =>{
           localStorage.setItem('participationId',res.data.participationId);
           localStorage.setItem('request',res.data.request);
@@ -84,17 +84,8 @@ handleSubmit=e=>{
 
 
   componentDidMount = ()=> {
-     
-    const config ={
-        headers:{
-            Authorization: 'Bearer ' + localStorage.getItem('token') 
-        },
-       
-    };
   
-
-  
-  axios.get('http://localhost:8080/api/event/',config).then(
+  axios.get('http://localhost:8080/api/event/').then(
     res => {
       // localStorage.setItem('email',res.data.email);  
         console.log(res)

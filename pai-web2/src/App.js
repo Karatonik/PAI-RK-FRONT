@@ -7,7 +7,6 @@ import { BrowserRouter, Switch,Route } from 'react-router-dom';
 import Login from './components/Login.component';
 import Registration from './components/Registration.component';
 import React ,{ Component } from 'react';
-import axios from 'axios';
 import Forgot from './components/Forgot.component';
 import Reset from './components/Reset.component';
 import EventPage from './components/EventPage'
@@ -21,32 +20,6 @@ export default class App extends Component {
 
   state ={}
 
-  componentDidMount = ()=> {
-     
-      const config ={
-          headers:{
-              Authorization: 'Bearer ' + localStorage.getItem('token') 
-          },
-         
-      };
-      const email = localStorage.getItem('email')
-      console.log(email);
-
-    axios.get('http://localhost:8080/api/user/'+email,config).then(
-        res => {
-            
-                this.setState({
-                    user:res.data
-                })
-          
-        },
-        
-     err =>{
-        console.log(err)
-    }
-  )
-
-}
 
 setUser = user =>{
   this.setState({
@@ -89,7 +62,8 @@ setUser = user =>{
           <div className = "auth-inner">
    
             <Switch>
-              <Route exact path = "/" component = {()=><Home user ={this.state.user} />}/>
+              <Route exact path = "/" component = {()=><Home />}/>
+              {/* <Route exact path = "/login-fb" component = {()=> <LoginFb/>}/> */}
               <Route exact path = "/login" component = {()=> <Login setUser={this.setUser}/>}/>
               <Route exact path = "/register" component = {Registration}/>
               <Route exact path = "/forgot" component = {Forgot }/>
