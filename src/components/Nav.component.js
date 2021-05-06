@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import EmailIcon from '@material-ui/icons/Email';
 import StarIcon from '@material-ui/icons/Star';
+import LoginGoogle from './LoginGoogle.component';
 export default class Nav extends Component {
 
     handleLoguot=()=>{
@@ -48,6 +49,9 @@ export default class Nav extends Component {
                 </li>
             <li>
                 <LoginFb/>
+            </li>
+            <li>
+                <LoginGoogle/>
             </li>
             </ul>
             )
