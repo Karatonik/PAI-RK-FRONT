@@ -34,10 +34,7 @@ export default class AddUserToEvent extends Component {
       }
         axios.post('http://localhost:8080/api/event/addUser/'+data.email+'/'+eventID,config).then(
            res =>{
-                localStorage.setItem('eventID',res.data.eventID);
-                localStorage.setItem('participationId',res.data.participationId);
-                localStorage.setItem('request',res.data.request);
-                console.log(" Id parti: ",localStorage.getItem('participationId'))
+              
       
             this.setState({
                
@@ -69,10 +66,10 @@ export default class AddUserToEvent extends Component {
       
         return (
             <div>
-             <Card  style={{width:'400px',margin:'10px',left:'500px',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
+             <Card  style={{width:'400px',marginLeft:'40%',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
                  <Icon  component= {WarningIcon} />
                  <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
-                      Request to join event
+                      Email of user, which you  want to invite
                       <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
                                 Yes
                                 </Button>

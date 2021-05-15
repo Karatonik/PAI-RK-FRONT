@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 
 export default class RequestUser extends Component {
@@ -29,28 +30,57 @@ export default class RequestUser extends Component {
           },
          
       };
+        var access =  '';
+        axios.get('http://localhost:8080/api/event/'+eventID,config).then(
+            
+            res =>{
+                access=res.data.access;
+                this.setState({
+
+                })
+                console.log(res)
+            },
+        ).catch(
+            err=>{
+            
+                this.setState({errorMessage: err.message})
+               
+               
+            }
+            
+        )
+        
+          
+        
+      
+
         axios.post('http://localhost:8080/api/user/rtje/'+email+'/'+eventID,config).then(
            res =>{
                 //  localStorage.setItem('eventID',res.data.eventID);
-                localStorage.setItem('participationId',res.data.participationId);
-                localStorage.setItem('request',res.data.request);
-                console.log(" Id parti: ",localStorage.getItem('participationId'),"Request:",localStorage.getItem('request'));
-      
+                // localStorage.setItem('participationId',res.data.participationId);
+                // localStorage.setItem('request',res.data.request);
+                // console.log(" Id parti: ",localStorage.getItem('participationId'),"Request:",localStorage.getItem('request'));
+            if(access==='Open'){
+              
+                return this.props.history.push("/infoComments/"+eventID);
+            }else{
+                return this.props.history.push("/events");
+            }
             this.setState({
                
                 
             })
            
-            //   setTimeout(() => {
-            //     window.location.reload();
-            //   }, 1500);
+            
+        
+           
                console.log(res)
              
            },
            
         ).catch(
             err=>{
-               
+            
                 this.setState({errorMessage: err.message})
                
                
@@ -65,7 +95,7 @@ export default class RequestUser extends Component {
       
         return (
             <div>
-             <Card  style={{width:'400px',margin:'10px',left:'500px',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
+             <Card  style={{width:'400px',marginLeft:'40%',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
                  <Icon  component= {WarningIcon} />
                  <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
                       Request to join event

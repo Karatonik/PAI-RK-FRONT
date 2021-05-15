@@ -7,6 +7,7 @@
 
 body{
   background: #1C8EF9;
+  background: url("./back.jpg");
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -37,22 +38,13 @@ body,html, .App, #root, .auth-wrapper{
   flex-direction: column;
   text-align: center;
 }
-/* 
-.form-group {
-  width: 450px;
-  margin: auto;
-  background-image: 'back.jpg';
-  background: #fff;
-  box-shadow: 0px 14px 80px rgba(34,35,58,0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all .3s;
-  
-} */
+
 
 .auth-inner form {
+  margin-top: -30%;
+  margin-left: 37%;
   width: 450px;
-  margin: auto;
+
   background-image: 'back.jpg';
   background: #fff;
   box-shadow: 0px 14px 80px rgba(34,35,58,0.2);
@@ -398,3 +390,11 @@ ul li {
 
 
 /* comments */
+
+
+.back{
+  
+ 
+    background: url("./back.jpg");
+  
+}

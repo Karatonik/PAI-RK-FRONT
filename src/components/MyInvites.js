@@ -85,10 +85,10 @@ export default class MyInvites extends Component {
          
       };
     
-  
+    const email = localStorage.getItem('email')
     const eventID = localStorage.getItem('eventID')
     console.log(eventID)
-    axios.get('http://localhost:8080/api/parti/event/1',config).then(
+    axios.get('http://localhost:8080/api/parti/user/from/event/'+email,config).then(
         
       res => {  
       
@@ -172,8 +172,7 @@ export default class MyInvites extends Component {
                           <StyledTableCell >Event Access</StyledTableCell >
                           <StyledTableCell >Event Date of create</StyledTableCell >
                           <StyledTableCell >Event Date if start Event</StyledTableCell >
-                          <StyledTableCell >Your Nick</StyledTableCell >
-                          <StyledTableCell >Your Email</StyledTableCell >
+                
                           {/* <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
                                 Yes
                                 </Button>
@@ -195,12 +194,7 @@ export default class MyInvites extends Component {
                                 
                                  <StyledTableCell>{invite.eventPAIDto.dateOfCreate}</StyledTableCell>
                                  <StyledTableCell>{invite.eventPAIDto.dateOfStarEvent}</StyledTableCell>
-                           
-                           
-                              <StyledTableCell >{invite.userPAIDto.nick}</StyledTableCell>
-                                    
-                              <StyledTableCell >{invite.userPAIDto.email}</StyledTableCell>
-                              < Link to={"acceptInvite/"+invite.participationId }className= "btn btn-sm btn-outline-primary">Accept Invite </Link>{' '}
+                              < Link to={"acceptInvite/"+invite.participationId}className= "btn btn-sm btn-outline-primary">Accept Invite </Link>{' '}
                             
                                            
                             </StyledTableRow>

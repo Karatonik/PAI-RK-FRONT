@@ -195,21 +195,22 @@ const data = {
                           <StyledTableCell >Address</StyledTableCell >
                           <StyledTableCell >Access</StyledTableCell >
                           <StyledTableCell >Date of create</StyledTableCell >
+                          <StyledTableCell >Actions</StyledTableCell >
                     </TableRow>
                  </TableHead>
                  <TableBody >
                   {
                      events.map((event,index)=>(
-                              <StyledTableRow    key={event.name} onClick={this.toggle}  >
+                              <StyledTableRow    key={event.name}>
                                 <StyledTableCell >{event.eventID}</StyledTableCell>
                               <StyledTableCell >{event.name}</StyledTableCell>
                               <StyledTableCell>{event.province}</StyledTableCell>
                               <StyledTableCell>{event.city}</StyledTableCell>
                               <StyledTableCell>{event.address}</StyledTableCell>
                               <StyledTableCell>{event.access}</StyledTableCell>
-                              <StyledTableCell>{event.dateOfCreate}</StyledTableCell>    
-                              < Link to={"event/"+event.eventID }className= "btn btn-sm btn-outline-primary"> Send Request</Link>{' '}
-                          
+                              <StyledTableCell>{event.dateOfCreate.replace(/:[^:]*$/,'').replace('T',' ') }</StyledTableCell>    
+                              <StyledTableCell>< Link to={"event/"+event.eventID }className= "btn btn-sm btn-outline-primary"> Join</Link>{' '}
+                              </StyledTableCell>   
                             </StyledTableRow>
                             
                       ))

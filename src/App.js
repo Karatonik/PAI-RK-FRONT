@@ -19,6 +19,10 @@ import RequestsToEventsFromUsers from './components/RequestsToEventsFromUsers'
 import MyInvites from './components/MyInvites';
 import RequestUser from './components/Request';
 import AddUserToEvent from './components/AddUserToEvent';
+import AcceptInvite from './components/AcceptInvite';
+import RequestToEvent from './components/RequestToEvent';
+import AcceptUserToEvent from './components/AcceptUserToEvent';
+import EventIPartiAlready from './components/EventIPartiAlready';
 
 export default class App extends Component {
 
@@ -34,6 +38,7 @@ export default class App extends Component {
       };
       const email = localStorage.getItem('email')
       console.log(email);
+   
 
     axios.get('http://localhost:8080/api/user/'+email,config).then(
         res => {
@@ -60,28 +65,32 @@ setUser = user =>{
 
   render(){
   return (
-    
     <BrowserRouter>
-  
-  <div style={{marginTop:'10%'}} >
+  <div style={{marginTop:'10%'}} className='background'>
           <Switch>
+            
             <Route exact path = "/events" component = {EventPage}/>
             <Route exact path = "/event/:id" component = {RequestUser}/>
             <Route exact path ='/addUser/:id' component = {AddUserToEvent}/>
+            <Route exact path ='/acceptInvite/:id' component = {AcceptInvite}/>
+            <Route exact path = '/showRequests/:id' component ={RequestToEvent}/>
+            <Route exact path = '/showRequests/:eventID/:id' component = {AcceptUserToEvent}/>
             <Route exact path = '/acceptInvite' component = {MyInvites}/>
             <Route exact path = "/deleteAcc" component ={DeleteAcc}/>
             <Route exact path = "/addEvent" component = {AddEvents}/>
             <Route exact path = "/myEvents" component = {MyEvents}/>
+            <Route exact path = "/eventsIPartiAlready" component = {EventIPartiAlready}/>
          
             <Route exact path = "/invitesFromUsers" component = {MyInvites}/>
 
             <Route exact path = "/requestsFromUsers" component = {RequestsToEventsFromUsers}/>
+            <Route exact path = "/infoComments/:id" component = {InfoComments}/>
         </Switch>
         
     </div>
     <div  style={{width:'90%'}}>
           <Switch>
-            <Route exact path = "/infoComments/:id" component = {InfoComments}/>
+          
             {/* <Route path="/edit/:id" exact component ={InfoComments}/> */}
         </Switch>
         

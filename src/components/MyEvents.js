@@ -104,8 +104,9 @@ const email = localStorage.getItem('email')
   axios.get('http://localhost:8080/api/user/events/admin/'+email,config).then(
     res => {
         
-      console.log(localStorage.getItem('eventID'))
+      localStorage.setItem(res.data.eventID,'eventID')
       console.log(res)
+      console.log(localStorage.getItem('eventID'))
         
 
             this.setState({
@@ -194,6 +195,7 @@ const email = localStorage.getItem('email')
                           <StyledTableCell >Address</StyledTableCell >
                           <StyledTableCell >Access</StyledTableCell >
                           <StyledTableCell >Date of create</StyledTableCell >
+                          <StyledTableCell >Actions</StyledTableCell >
                     </TableRow>
                  </TableHead>
                  <TableBody >
@@ -207,7 +209,10 @@ const email = localStorage.getItem('email')
                               <StyledTableCell>{event.address}</StyledTableCell>
                               <StyledTableCell>{event.access}</StyledTableCell>
                               <StyledTableCell>{event.dateOfCreate}</StyledTableCell>    
+                              <StyledTableCell>
                               < Link to={"addUser/"+event.eventID }className= "btn btn-sm btn-outline-primary">Add User </Link>{' '}
+                              < Link to={"showRequests/"+event.eventID }className= "btn btn-sm btn-outline-primary">Show Requests to this event </Link>{' '}
+                              </StyledTableCell>    
                             </StyledTableRow>
                             
                       ))

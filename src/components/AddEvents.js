@@ -5,8 +5,15 @@ import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
 import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import axios from 'axios'
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
+
 
 export default class AddEvents extends Component {
+    
     state={}
     handleSubmit=e=>{
         e.preventDefault();
@@ -21,13 +28,8 @@ export default class AddEvents extends Component {
             address:this.address,
             access:this.access,
             dateOfStartEvent:this.dateOfStartEvent,
-            
-    
-          
-           
         };
         
-      
         const config ={
             headers:{
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -38,8 +40,6 @@ export default class AddEvents extends Component {
            
         };
          axios.post('http://localhost:8080/api/event/'+data.name+'/'+data.province+'/'+data.city+'/'+data.address+'/'+data.access+'/'+data.dateOfStartEvent+'/'+email,config)
-       
-    
         .then(
            res =>{
             localStorage.setItem('eventID',JSON.stringify(res.data.eventID));
@@ -70,33 +70,14 @@ export default class AddEvents extends Component {
         
         
     }
- 
-
     render() {
-      
-        let error ='';
-        if(this.state.message){
-            error =(
-                <div className = "alert alert-success" role = "alert">
-                    {this.state.message}
-                </div>
-            )
-        }
+       
         return (
             <Card style={{backgroundColor:'#D0FFC8'}}  >
             <Card.Header><Icon component= {AddBoxIcon} style={{marginLeft:'-90%'}}/>Create your Event!</Card.Header>  
                <Form onSubmit={this.handleSubmit}>
                     <Card.Body >
-                    {error}
                     <Form.Row>
-                    {/* <Form.Group  as={Col}>
-                                    <Form.Label>ID</Form.Label>
-                                    <Form.Control required autoComplete="off"
-                                        type="text"
-                                        name = "eventID"
-                                        onChange={e=>this.eventID=e.target.value}
-                                        placeholder="eventID" />
-                                </Form.Group> */}
                         <Form.Group  as={Col}>
                                     <Form.Label>Name</Form.Label>
                                     <Form.Control required autoComplete="off"
@@ -129,33 +110,49 @@ export default class AddEvents extends Component {
                                         onChange={e=>this.address=e.target.value}
                                         placeholder="Address"/>
                                 </Form.Group>
-                                <Form.Group  as={Col}>
+                                {/* <Form.Group  as={Col}>
                                     <Form.Label>Access</Form.Label>
                                     <Form.Control required autoComplete="off"
                                         type="text"
                                         name = "access"
                                         onChange={e=>this.access=e.target.value}
                                         placeholder="Access"/>
-                                </Form.Group>
-                                <Form.Group  as={Col}>
-                                    <Form.Label>Date Of Start Event</Form.Label>
-                                    <Form.Control required autoComplete="off"
-                                        type="text"
-                                        // InputLabelProps={{
-                                        //     shrink: true,
-                                        // }}
-                                        name = "dateOfStartEvent"
-                                        onChange={e=>this.dateOfStartEvent=e.target.value}
-                                        placeholder="Date Of Start Event"/>
-                                </Form.Group>
+                                </Form.Group> */}
+                                <Form.Group as={Col} >
+                                <Form.Label style={{position:'fixed'}}>Access</Form.Label>
+                                    <select style={{marginTop:'12%',width:'200px',height:'38px'}} 
+                                    onChange={e=>this.access=e.target.value} 
+                                     name = "access">
+                                            <option value="select">Select access</option>
+                                            <option value="Open">Open</option>
+                                            <option value="Closed">Closed</option>
+                                    </select>
+                                    </Form.Group>
 
+
+
+
+
+
+
+
+
+                                <Form.Group as={Col}>
+                                <Form.Label>Date Of Start Event</Form.Label>{' '}
+                                    <TextField style={{marginTop:"0.5%",marginLeft:"1%"}}
+                                     placeholder="Date Of Start Event"
+                                        name = "dateOfStartEvent"
+                                        type ='datetime-local'
+                                        onChange={e=>this.dateOfStartEvent=e.target.value.toString().replace("T", " ")}
+                                        value={this.state.dateOfStartEvent}
+                                      />
+                                    </Form.Group>       
                             <Button style={{ marginRight: '6px' }} size="sm" className="buttonW" variant ="success" type = "submit" onSubmit={this.handleSubmit}><Icon component= {SaveIcon}/>Save</Button>
                              {' '}
                              <Button size="sm" className="buttonW"  variant ="info" type = "reset"><Icon component= {RestoreFromTrashIcon}/>Reset</Button>
                              {' '}
                          </Form.Row>         
                      </Card.Body>
-
             </Form>
         </Card>
         );

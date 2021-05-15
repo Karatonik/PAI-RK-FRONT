@@ -19,6 +19,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from 'react-router-dom';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardMedia from '@material-ui/core/CardMedia';
+import imageEvent1 from './Images/event1.jpg'
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 export default class InfoComments extends Component {
   constructor(props){
     super(props);
@@ -39,11 +44,11 @@ export default class InfoComments extends Component {
 
 
   
-componentDidMount() {
+componentDidMount =()=> {
 
 
-
-  axios.get("http://localhost:8080/api/event/1")
+  const eventID= this.props.match.params.id
+  axios.get("http://localhost:8080/api/event/"+eventID)
       .then(res => {
           this.setState({ event: res.data });
           console.log(res)
@@ -57,17 +62,22 @@ componentDidMount() {
     // comments   
     const config ={
       headers:{
-          Authorization: 'Bearer ' + localStorage.getItem('token') 
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+          'Accept' : 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Expose-Headers': 'Authorization'
       },
      
   };
 
-
-      axios.get("http://localhost:8080/api/event/comments/1",config)
-      .then(res => {
-          this.setState({ 
-            comments: res.data 
-          });
+      
+      axios.get("http://localhost:8080/api/event/comments/"+eventID,config).then(
+      res => {
+       
+        console.log(res)
+        this.setState({ comments: res.data });
+    
+          console.log("EventID: ",eventID)
           console.log("All comments: ",res)
           
           
@@ -86,9 +96,9 @@ state={}
 handleSubmit=e=>{
   e.preventDefault();
   const email =localStorage.getItem('email');
-  const eventID =localStorage.getItem('eventID');
 
-  console.log(email,eventID)
+
+  console.log(email)
 
   const config ={
     headers:{
@@ -103,6 +113,8 @@ handleSubmit=e=>{
 const data ={
   text:this.text
 }
+const eventID= this.props.match.params.id
+console.log("Current eventID for comm: ",eventID)
   axios.post('http://localhost:8080/api/comm/'+email+'/'+eventID+'/'+data.text,config).then(
      res =>{
          
@@ -147,31 +159,11 @@ deleteComment=(commentId)=>{
       }
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+setComments = comments =>{
+  this.setState({
+    comments:comments
+  });
+};
 
 
 render() {
@@ -202,33 +194,7 @@ const StyledTableRow = withStyles((theme) => ({
 
   return (
     <>
-
-<div style={{width:'500px',position:'fixed',top:200,right:30}}>
-<Card style={{backgroundColor:'#D0FFC8'}} >
-            <Card.Header>Leave your opinion about this event!</Card.Header>  
-               <Form onSubmit={this.handleSubmit}>
-                    <Card.Body >
-                    <Form.Row>
-                   
-                                <Form.Group  as={Col}>
-                                  
-                                    <Form.Control required autoComplete="off"
-                                        type="text"
-                                        // InputLabelProps={{
-                                        //     shrink: true,
-                                        // }}
-                                        name = "text"
-                                        onChange={e=>this.text=e.target.value}
-                                        placeholder="Your comment..."/>
-                                </Form.Group>
-                                <Button style={{ marginTop:'-0.5%'}} size="sm" className="buttonW" variant ="success" type = "submit" onSubmit={this.handleSubmit}><Icon component= {SaveIcon}/>Save</Button>
-                         </Form.Row>         
-                     </Card.Body>
-
-            </Form>
-        </Card>
-  </div>
- <div style={{width:'400px',marginLeft:'56.5%',marginTop:'10%',right:550}} >
+ <div style={{width:'400px',marginTop:'10.5%',marginLeft:'50.6%'}} >
  {
    comments.map((comment,index)=>(
  <Card style={{overflow:'auto',borderWidth:0}} >
@@ -260,39 +226,43 @@ const StyledTableRow = withStyles((theme) => ({
        ))
       }
  </div>
-    <TableContainer  style={{width:'900px',marginLeft:'3%',position:'fixed',top:200,left:0}} component={Paper} elevation={0}>
-        <Table className='ui-table zuis-table-horizontal zuis-table-highlight'>
-          <TableHead  > 
-            <TableRow  >   
-                    <StyledTableCell >ID</StyledTableCell >
-                    <StyledTableCell >Name</StyledTableCell >
-                    <StyledTableCell >Province</StyledTableCell >
-                    <StyledTableCell >City</StyledTableCell >
-                    <StyledTableCell >Address</StyledTableCell >
-                    <StyledTableCell >Access</StyledTableCell >
-                    <StyledTableCell >Date of create</StyledTableCell >
-              </TableRow>
-           </TableHead>
-           <TableBody >
+<div style={{width:'500px',marginTop:'10.5%',marginLeft:'73%'}}>
+<Card style={{backgroundColor:'#D0FFC8'}} >
+            <Card.Header>Leave your opinion about this event!</Card.Header>  
+               <Form onSubmit={this.handleSubmit}>
+                    <Card.Body >
+                    <Form.Row>
+                   
+                                <Form.Group  as={Col}>
+                                  
+                                    <Form.Control required autoComplete="off"
+                                        type="text"
+                                        // InputLabelProps={{
+                                        //     shrink: true,
+                                        // }}
+                                        name = "text"
+                                        onChange={e=>this.text=e.target.value}
+                                        placeholder="Your comment..."/>
+                                </Form.Group>
+                                <Button style={{ marginTop:'-0.5%'}} size="sm" className="buttonW" variant ="success" type = "submit" onSubmit={this.handleSubmit}><Icon component= {SaveIcon}/>Save</Button>
+                         </Form.Row>         
+                     </Card.Body>
+
+            </Form>
+        </Card>
+  </div>
+  
+
+  <MDBCard style={{ maxWidth: '22rem' ,marginTop:'-45%'}}>
+      <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/184.jpg' position='top' alt='...' />
+      <MDBCardBody>
+    <MDBCardTitle>{event.name}</MDBCardTitle>
+        <MDBCardText>
+          {event.province}{event.city}
+        </MDBCardText>
+      </MDBCardBody>
+    </MDBCard>
      
-                        <StyledTableRow  >
-                          <StyledTableCell >{event.eventID}</StyledTableCell>
-                        <StyledTableCell >{event.name}</StyledTableCell>
-                        <StyledTableCell>{event.province}</StyledTableCell>
-                        <StyledTableCell>{event.city}</StyledTableCell>
-                        <StyledTableCell>{event.address}</StyledTableCell>
-                        <StyledTableCell>{event.access}</StyledTableCell>
-                        <StyledTableCell>{event.dateOfCreate}</StyledTableCell>    
-                                     
-                      </StyledTableRow>
-                      
-                
-             
-             
-           </TableBody>    
-        </Table>
-        </TableContainer>
-       
 </>
 
   );

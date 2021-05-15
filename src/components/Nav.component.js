@@ -27,10 +27,11 @@ export default class Nav extends Component {
                   
                     <DropdownButton className='dropdown-content ' id="dropdown-basic-button" title="Menu">
                         <Dropdown.Item href="/events"><Icon component= {EventIcon}/>Find event</Dropdown.Item>
-                        <Dropdown.Item href="/myEvents"><Icon component= {StarIcon}/>My Events</Dropdown.Item>
+                        <Dropdown.Item href="/myEvents"><Icon component= {StarIcon}/>Events created by myself</Dropdown.Item>
                         <Dropdown.Item href="/addEvent"><Icon component= {PostAddIcon}/>Create new Event</Dropdown.Item>
-                        <Dropdown.Item href="/requestsFromUsers"><Icon component= {EmailIcon}/>My requests</Dropdown.Item>
-                        <Dropdown.Item href="/invitesFromUsers"><Icon component= {EmailIcon}/>My invites</Dropdown.Item>
+                        <Dropdown.Item href="/requestsFromUsers"><Icon component= {EmailIcon}/>Requests to other events</Dropdown.Item>
+                        <Dropdown.Item href="/invitesFromUsers"><Icon component= {EmailIcon}/>Invites from other events</Dropdown.Item>
+                        <Dropdown.Item href="/eventsIPartiAlready"><Icon component= {EventIcon}/>Events which I participate already</Dropdown.Item>
                         <Dropdown.Item href="/deleteAcc"><Icon component= {DeleteIcon}/>Delete Account</Dropdown.Item>
                         <Dropdown.Item href="/" onClick ={this.handleLoguot}>  <Icon component= {ExitToAppIcon}/> Logout</Dropdown.Item>
                        

@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import MyToast from './MyToast';
 
 export default class Registration extends Component {
+   
+    
     state={
         errorMessage: '',
         successMessage:''
@@ -18,25 +21,20 @@ export default class Registration extends Component {
         };
         axios.post('http://localhost:8080/api/auth/singup/',data).then(
            res =>{
-      
-            this.setState({
-               
-                 successMessage:"Success: You have been successfully registered!"
-            })
-           
-            //   setTimeout(() => {
-            //     window.location.reload();
-            //   }, 1500);
+            localStorage.setItem("status", JSON.stringify(res.data.activated));
+            this.setState({    
+                "show":true
+                
+            });
+            setTimeout(()=>this.setState({"show":false}),3000);
+            
+            window.location.reload();
                console.log(res)
-               
            },
            
         ).catch(
             err=>{
-               
-                this.setState({errorMessage: err.message})
-               
-               
+                this.setState({"show":false});
             }
             
         )
@@ -50,19 +48,16 @@ export default class Registration extends Component {
           
         
         return (
-          <form onSubmit={this.handleSubmit} >
-              {this.state.errorMessage && 
-              <div class="message" style={{color:'red'}}>Error: Email is already taken!         
-
-                </div>
-              }
-            
-               
-               { this.state.successMessage &&
-            <div class="message" style={{color:'green'}}> Success: You have been successfully registered!        
-
+            <>
+            <div style={{width:'100px',marginLeft:'80%',marginTop:'1%'}}>
+            <MyToast/>
             </div>
-                 } 
+              
+           
+          <form onSubmit={this.handleSubmit} >
+           <div style={{"display":this.state.show ? "block" : "none"}}>
+                    <MyToast show={this.state.show} message={"Projekt Deleted Successfully."}type={"danger"}/>
+                </div>
               <h3>Sign Up</h3>
 
               <div className = "form-group">
@@ -84,6 +79,7 @@ export default class Registration extends Component {
               <button className = "btn btn-primary btn-block">Sign Up</button>
               <button type="reset" className="btn btn-primary btn-block">Reset</button>
           </form>
+          </>
         );
     }
 }
