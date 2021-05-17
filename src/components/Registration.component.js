@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import MyToast from './MyToast';
 
 export default class Registration extends Component {
-   
-    
+     
     state={
         errorMessage: '',
         successMessage:''
@@ -15,46 +14,28 @@ export default class Registration extends Component {
             email:this.email,
             password:this.password,
             nick:this.nick,
-    
-          
-           
+     
         };
         axios.post('http://localhost:8080/api/auth/singup/',data).then(
            res =>{
             localStorage.setItem("status", JSON.stringify(res.data.activated));
             this.setState({    
-                "show":true
-                
+    
             });
-            setTimeout(()=>this.setState({"show":false}),3000);
-            
             window.location.reload();
                console.log(res)
            },
            
         ).catch(
             err=>{
-                this.setState({"show":false});
-            }
-            
-        )
-        
-          
-        
-    }
-    
-    render() {
-     
-          
-        
+                
+            } 
+        )   
+    }  
+    render() {       
         return (
-            <>
-            <div style={{width:'100px',marginLeft:'80%',marginTop:'1%'}}>
-            <MyToast/>
-            </div>
-              
-           
-          <form onSubmit={this.handleSubmit} >
+        
+          <form onSubmit={this.handleSubmit}>
            <div style={{"display":this.state.show ? "block" : "none"}}>
                     <MyToast show={this.state.show} message={"Projekt Deleted Successfully."}type={"danger"}/>
                 </div>
@@ -75,11 +56,9 @@ export default class Registration extends Component {
                   <input type = "text" required autoComplete="off" className = "form-control" placeholder = "Nick"
                   onChange={e=>this.nick=e.target.value}/>
               </div>
-
               <button className = "btn btn-primary btn-block">Sign Up</button>
               <button type="reset" className="btn btn-primary btn-block">Reset</button>
           </form>
-          </>
         );
     }
 }

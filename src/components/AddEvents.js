@@ -6,9 +6,6 @@ import SaveIcon from '@material-ui/icons/Save';
 import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 
 
 
@@ -73,7 +70,7 @@ export default class AddEvents extends Component {
     render() {
        
         return (
-            <Card style={{backgroundColor:'#D0FFC8'}}  >
+            <Card style={{backgroundColor:'#D0FFC8',marginTop:'12%'}} >
             <Card.Header><Icon component= {AddBoxIcon} style={{marginLeft:'-90%'}}/>Create your Event!</Card.Header>  
                <Form onSubmit={this.handleSubmit}>
                     <Card.Body >
@@ -110,14 +107,6 @@ export default class AddEvents extends Component {
                                         onChange={e=>this.address=e.target.value}
                                         placeholder="Address"/>
                                 </Form.Group>
-                                {/* <Form.Group  as={Col}>
-                                    <Form.Label>Access</Form.Label>
-                                    <Form.Control required autoComplete="off"
-                                        type="text"
-                                        name = "access"
-                                        onChange={e=>this.access=e.target.value}
-                                        placeholder="Access"/>
-                                </Form.Group> */}
                                 <Form.Group as={Col} >
                                 <Form.Label style={{position:'fixed'}}>Access</Form.Label>
                                     <select style={{marginTop:'12%',width:'200px',height:'38px'}} 
@@ -128,15 +117,6 @@ export default class AddEvents extends Component {
                                             <option value="Closed">Closed</option>
                                     </select>
                                     </Form.Group>
-
-
-
-
-
-
-
-
-
                                 <Form.Group as={Col}>
                                 <Form.Label>Date Of Start Event</Form.Label>{' '}
                                     <TextField style={{marginTop:"0.5%",marginLeft:"1%"}}

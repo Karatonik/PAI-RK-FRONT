@@ -35,7 +35,7 @@ export default class AddUserToEvent extends Component {
         axios.post('http://localhost:8080/api/event/addUser/'+data.email+'/'+eventID,config).then(
            res =>{
               
-      
+
             this.setState({
                
                 
@@ -66,7 +66,7 @@ export default class AddUserToEvent extends Component {
       
         return (
             <div>
-             <Card  style={{width:'400px',marginLeft:'40%',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
+             <Card  style={{width:'400px',marginLeft:'40%',backgroundColor:'#D0FFC8',fontSize:'20px',marginTop:'12%'}}>    
                  <Icon  component= {WarningIcon} />
                  <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
                       Email of user, which you  want to invite

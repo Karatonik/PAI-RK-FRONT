@@ -9,13 +9,13 @@ export default class Home extends Component {
         
         if(this.props.user){
             return(
-                <h2>Hi, {this.props.user.nick} </h2>
+                <h2 style={{marginTop:'-10%'}}>Hi, {this.props.user.nick} </h2>
                 
             )
             
         }
         return (
-            <h2>You are not logged in</h2>
+            <h2 style={{marginTop:'-10%'}}>You are not logged in</h2>
         );
     }
 }

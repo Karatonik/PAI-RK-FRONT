@@ -7,10 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {Card} from 'react-bootstrap'
-import { Button } from '@material-ui/core';
-import WarningIcon from '@material-ui/icons/Warning';
-import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
 
 export default class RequestsToEventsFromUsers extends Component {
@@ -92,11 +88,7 @@ export default class RequestsToEventsFromUsers extends Component {
       
         console.log(" Id parti: ",localStorage.getItem('participationId'),localStorage.getItem("request"));
        
-  
-        
 
-       
-        
               this.setState({
                 requests:res.data
               })
@@ -142,28 +134,9 @@ export default class RequestsToEventsFromUsers extends Component {
         },
       }))(TableRow);
       
-    
-     
-      
+
         return (
-          <>
-          <div>
-              {this.state.show && <Card  style={{width:'400px',margin:'10px',left:'500px',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
-                 <Icon  component= {WarningIcon} />
-                 <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
-                      Accept this shit to event?!
-                      <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
-                                Yes
-                                </Button>
-                    
-                    <Button onClick={this.close} variant = "outline-danger" style ={{backgroundColor:' #ff6666',margin:'7px'}}>
-                      No
-                    </Button >
-                 <Icon component= {WarningIcon} style={{marginLeft:"94%"}} />
-                 <Icon component= {WarningIcon} style={{marginTop:'-6%'}}/>
-                 </Card>} 
-          </div>
-          <TableContainer component={Paper} elevation={0}>
+          <TableContainer component={Paper} elevation={0} style={{marginTop:'12%'}}>
               <Table className='ui-table zui-table-horizontal zui-table-highlight'>
                 <TableHead  > 
                   <TableRow  >   
@@ -178,19 +151,13 @@ export default class RequestsToEventsFromUsers extends Component {
                               <StyledTableRow    key={request.participationId} onClick={this.toggle}  >
                                 <StyledTableCell >{request.userPAIDto.email}</StyledTableCell>
                               <StyledTableCell >{request.userPAIDto.nick}</StyledTableCell>
-                              <StyledTableCell>{request.eventPAIDto.eventID}</StyledTableCell>
-                          
-                            
-                                           
+                              <StyledTableCell>{request.eventPAIDto.eventID}</StyledTableCell>         
                             </StyledTableRow>
-                            
                       ))
                    }
-                   
                  </TableBody>    
               </Table>
               </TableContainer>
-     </>
         );
         
     }

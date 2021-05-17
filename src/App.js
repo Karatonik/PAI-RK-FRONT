@@ -24,6 +24,7 @@ import RequestToEvent from './components/RequestToEvent';
 import AcceptUserToEvent from './components/AcceptUserToEvent';
 import EventIPartiAlready from './components/EventIPartiAlready';
 
+
 export default class App extends Component {
 
   state ={}
@@ -66,9 +67,7 @@ setUser = user =>{
   render(){
   return (
     <BrowserRouter>
-  <div style={{marginTop:'10%'}} className='background'>
-          <Switch>
-            
+          <Switch> 
             <Route exact path = "/events" component = {EventPage}/>
             <Route exact path = "/event/:id" component = {RequestUser}/>
             <Route exact path ='/addUser/:id' component = {AddUserToEvent}/>
@@ -80,46 +79,23 @@ setUser = user =>{
             <Route exact path = "/addEvent" component = {AddEvents}/>
             <Route exact path = "/myEvents" component = {MyEvents}/>
             <Route exact path = "/eventsIPartiAlready" component = {EventIPartiAlready}/>
-         
             <Route exact path = "/invitesFromUsers" component = {MyInvites}/>
-
             <Route exact path = "/requestsFromUsers" component = {RequestsToEventsFromUsers}/>
             <Route exact path = "/infoComments/:id" component = {InfoComments}/>
+
         </Switch>
-        
-    </div>
-    <div  style={{width:'90%'}}>
-          <Switch>
-          
-            {/* <Route path="/edit/:id" exact component ={InfoComments}/> */}
-        </Switch>
-        
-    </div>
       <div className="App">
-      
       <Nav user = {this.state.user} setUser = {this.setUser}/>
-      
-       
-        
-    <div className = "auth-wrapper">
-   
-          <div className = "auth-inner">
-   
+      <div className = "auth-wrapper">
             <Switch>
               <Route exact path = "/" component = {()=><Home user ={this.state.user} />}/>
               <Route exact path = "/login" component = {()=> <Login setUser={this.setUser}/>}/>
               <Route exact path = "/register" component = {Registration}/>
               <Route exact path = "/forgot" component = {Forgot }/>
               <Route exact path = "/reset/:id" component = {Reset }/>
-              
             </Switch>
-           
-          </div>
-         
         </div>
       </div>
-    
-      
     </BrowserRouter>
     );
   }

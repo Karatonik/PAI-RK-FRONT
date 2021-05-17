@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+
 
 
 export default class RequestUser extends Component {
@@ -95,7 +95,7 @@ export default class RequestUser extends Component {
       
         return (
             <div>
-             <Card  style={{width:'400px',marginLeft:'40%',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
+             <Card  style={{width:'400px',marginLeft:'40%',backgroundColor:'#D0FFC8',fontSize:'20px',marginTop:'12%'}}>    
                  <Icon  component= {WarningIcon} />
                  <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
                       Request to join event

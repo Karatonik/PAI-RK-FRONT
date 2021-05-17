@@ -7,10 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {Card} from 'react-bootstrap'
-import { Button } from '@material-ui/core';
-import WarningIcon from '@material-ui/icons/Warning';
-import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 export default class MyEvents extends Component {
@@ -52,14 +48,10 @@ const data = {
           localStorage.setItem('request',res.data.request);
           console.log(" Id parti: ",localStorage.getItem('participationId'))
 
-      this.setState({
-         
+      this.setState({ 
           
       })
      
-      //   setTimeout(() => {
-      //     window.location.reload();
-      //   }, 1500);
          console.log(res)
        
      },
@@ -77,12 +69,6 @@ const data = {
     
   
 }
-
-
-
-
-
-
 
 
   toggle = () => this.setState((currentState) => ({show: !currentState.show}));
@@ -130,11 +116,6 @@ const email = localStorage.getItem('email')
 
 
 
-
-
-
-
-
     render() {
         const {events} =this.state;
  
@@ -158,37 +139,13 @@ const email = localStorage.getItem('email')
           },
         },
       }))(TableRow);
-      
     
-     
-      
         return (
-          <>
-          <div>
-              {this.state.show && <Card  style={{width:'400px',margin:'10px',left:'500px',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
-                 <Icon  component= {WarningIcon} />
-                 <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
-                      Request to join event
-                      <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
-                                Yes
-                                </Button>
-                                <div className = "form-group">
-                  <label>Email</label>
-                  <input type = "email" className = "form-control" placeholder = "Email"
-                  onChange={e=>this.email=e.target.value}/>
-              </div>
-                    <Button onClick={this.close} variant = "outline-danger" style ={{backgroundColor:' #ff6666',margin:'7px'}}>
-                      No
-                    </Button >
-                 <Icon component= {WarningIcon} style={{marginLeft:"94%"}} />
-                 <Icon component= {WarningIcon} style={{marginTop:'-6%'}}/>
-                 </Card>} 
-          </div>
-          <TableContainer component={Paper} elevation={0}>
+         
+          <TableContainer component={Paper} elevation={0} style={{marginTop:'12%'}}>
               <Table className='ui-table zui-table-horizontal zui-table-highlight'>
                 <TableHead  > 
                   <TableRow  >   
-                          <StyledTableCell >ID</StyledTableCell >
                           <StyledTableCell >Name</StyledTableCell >
                           <StyledTableCell >Province</StyledTableCell >
                           <StyledTableCell >City</StyledTableCell >
@@ -202,7 +159,6 @@ const email = localStorage.getItem('email')
                   {
                      events.map((event,index)=>(
                               <StyledTableRow    key={event.name} onClick={this.toggle}  >
-                                <StyledTableCell >{event.eventID}</StyledTableCell>
                               <StyledTableCell >{event.name}</StyledTableCell>
                               <StyledTableCell>{event.province}</StyledTableCell>
                               <StyledTableCell>{event.city}</StyledTableCell>
@@ -217,11 +173,9 @@ const email = localStorage.getItem('email')
                             
                       ))
                    }
-                   
                  </TableBody>    
               </Table>
               </TableContainer>
-     </>
         );
         
     }

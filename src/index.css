@@ -40,9 +40,8 @@ body,html, .App, #root, .auth-wrapper{
 }
 
 
-.auth-inner form {
-  margin-top: -30%;
-  margin-left: 37%;
+.auth-wrapper form {
+  margin:auto;
   width: 450px;
 
   background-image: 'back.jpg';
@@ -394,7 +393,14 @@ ul li {
 
 .back{
   
- 
     background: url("./back.jpg");
   
+}
+
+.card>.card{
+  background-color:'#D0FFC8'
+}
+
+.card{
+  position: fixed;
 }
