@@ -64,7 +64,7 @@ export default class AccepsInvite extends Component {
       
         return (
             <div>
-             <Card  style={{width:'400px',margin:'10px',left:'500px',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
+             <Card  style={{width:'400px',backgroundColor:'#D0FFC8',left:'750px',fontSize:'20px',marginTop:'12%'}}>    
                  <Icon  component= {WarningIcon} />
                  <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
                       Request to join event

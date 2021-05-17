@@ -82,6 +82,7 @@ setUser = user =>{
             <Route exact path = "/invitesFromUsers" component = {MyInvites}/>
             <Route exact path = "/requestsFromUsers" component = {RequestsToEventsFromUsers}/>
             <Route exact path = "/infoComments/:id" component = {InfoComments}/>
+         
 
         </Switch>
       <div className="App">

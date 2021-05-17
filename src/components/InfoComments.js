@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
-
+import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -101,6 +101,7 @@ handleSubmit=e=>{
 const data ={
   text:this.text
 }
+
 const eventID= this.props.match.params.id
 console.log("Current eventID for comm: ",eventID)
   axios.post('http://localhost:8080/api/comm/'+email+'/'+eventID+'/'+data.text,config).then(
@@ -131,11 +132,12 @@ console.log("Current eventID for comm: ",eventID)
   
 }
 
-  
+
 deleteComment=(commentId)=>{ 
-  axios.delete("http://localhost:8080/api/comm/"+commentId)
+  let email = localStorage.getItem('email')
+  axios.delete("http://localhost:8080/api/comm/"+commentId+"/"+email)
   .then(res=>{
-      if(res.data!=null){
+      if(res.data){
           this.setState({
               comments:this.state.comments.filter(comment => comment.commentId !== commentId)
 
@@ -143,7 +145,7 @@ deleteComment=(commentId)=>{
           console.log(res)
       }
       else{
-        console.log('error')
+       alert('Its not your comment!')
       }
   });
 };
@@ -181,10 +183,6 @@ render() {
       
       </CardContent>
       <ButtonGroup>
-          {/* <Link to={"edit/"+comment.commentId }className= "btn btn-sm btn-outline-primary"><Icon component= {EditIcon}/></Link>{' '} * */}
-         {/* <IconButton  aria-label="Edit"  variant = "outline-danger" onClick={this.handleTaskUpdate.bind(this,comment.commentId)}>  
-             <EditIcon />
-        </IconButton> */}
           <IconButton aria-label="delete" variant = "outline-danger" onClick={this.deleteComment.bind(this,comment.commentId)}>  
              <DeleteIcon />
         </IconButton>
@@ -220,6 +218,9 @@ render() {
       <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/184.jpg' position='top' alt='...' />
       <CardContent>
     <CardHeader style={{textAlign:'center'}}>{event.name}</CardHeader>
+    <Typography  style={{textAlign:'center'}}>
+          Name: {event.name}
+        </Typography >
         <Typography  style={{textAlign:'center'}}>
           Province: {event.province}
         </Typography >

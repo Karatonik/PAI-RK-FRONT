@@ -51,7 +51,8 @@ export default class AddEvents extends Component {
             });
            
                console.log(res)
-            //    window.location.reload();
+               alert("Event created succeffully!")
+             window.location.reload();
            } 
            
         ).catch(

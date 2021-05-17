@@ -121,18 +121,22 @@ export default class RequestToEvent extends Component {
                  <Icon component= {WarningIcon} style={{marginTop:'-6%'}}/>
                  </Card>} 
           </div>
-          <TableContainer component={Paper} elevation={0}>
+          <TableContainer component={Paper} elevation={0}style={{marginTop:'12%'}}>
               <Table className='ui-table zui-table-horizontal zui-table-highlight'>
                 <TableHead  > 
                   <TableRow  >   
                           <StyledTableCell >Email</StyledTableCell >
                           <StyledTableCell >Name</StyledTableCell >
+                          <StyledTableCell >Actions</StyledTableCell >
                         
                           
                     </TableRow>
                  </TableHead>
                  <TableBody >
-                  {
+                  {participations.length===0 ?
+                            <TableRow align="center">
+                                <td colSpan ="6"> Nobody want to join to your event.</td>
+                            </TableRow>:
                      participations.map((participation,index)=>(
                               <StyledTableRow    key={participation.participationId} onClick={this.toggle}  >
                             

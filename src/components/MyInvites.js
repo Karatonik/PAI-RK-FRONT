@@ -144,7 +144,7 @@ export default class MyInvites extends Component {
       
         return (
           <>
-          <div>
+        
               {this.state.show && <Card  style={{width:'400px',margin:'10px',left:'500px',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
                  <Icon  component= {WarningIcon} />
                  <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
@@ -159,8 +159,8 @@ export default class MyInvites extends Component {
                  <Icon component= {WarningIcon} style={{marginLeft:"94%"}} />
                  <Icon component= {WarningIcon} style={{marginTop:'-6%'}}/>
                  </Card>} 
-          </div>
-          <TableContainer component={Paper} elevation={0}>
+         
+          <TableContainer component={Paper} elevation={0}style={{marginTop:'12%'}}>
               <Table className='ui-table zui-table-horizontal zui-table-highlight'>
                 <TableHead  > 
                   <TableRow  >   
@@ -172,6 +172,7 @@ export default class MyInvites extends Component {
                           <StyledTableCell >Event Access</StyledTableCell >
                           <StyledTableCell >Event Date of create</StyledTableCell >
                           <StyledTableCell >Event Date if start Event</StyledTableCell >
+                          <StyledTableCell >Actions</StyledTableCell >
                 
                           {/* <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
                                 Yes
@@ -182,7 +183,10 @@ export default class MyInvites extends Component {
                     </TableRow>
                  </TableHead>
                  <TableBody >
-                  {
+                  {invites.length===0 ?
+                            <tr align="center">
+                                <td colSpan ="8"> No invites for you on this moment.</td>
+                            </tr>:
                      invites.map((invite,index)=>(
                               <StyledTableRow    key={invite.participationId} onClick={this.toggle}  >
                     

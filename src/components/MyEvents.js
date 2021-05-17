@@ -156,7 +156,10 @@ const email = localStorage.getItem('email')
                     </TableRow>
                  </TableHead>
                  <TableBody >
-                  {
+                  {events.length===0 ?
+                            <TableRow align="center">
+                                <td colSpan ="6"> Not create events by yourself.</td>
+                            </TableRow>:
                      events.map((event,index)=>(
                               <StyledTableRow    key={event.name} onClick={this.toggle}  >
                               <StyledTableCell >{event.name}</StyledTableCell>
@@ -164,10 +167,11 @@ const email = localStorage.getItem('email')
                               <StyledTableCell>{event.city}</StyledTableCell>
                               <StyledTableCell>{event.address}</StyledTableCell>
                               <StyledTableCell>{event.access}</StyledTableCell>
-                              <StyledTableCell>{event.dateOfCreate}</StyledTableCell>    
+                              <StyledTableCell>{event.dateOfCreate.replace(/:[^:]*$/,'').replace('T',' ')}</StyledTableCell>    
                               <StyledTableCell>
                               < Link to={"addUser/"+event.eventID }className= "btn btn-sm btn-outline-primary">Add User </Link>{' '}
                               < Link to={"showRequests/"+event.eventID }className= "btn btn-sm btn-outline-primary">Show Requests to this event </Link>{' '}
+                              < Link to={'infoComments/'+event.eventID}className= "btn btn-sm btn-outline-primary">Show Info </Link>{' '}
                               </StyledTableCell>    
                             </StyledTableRow>
                             

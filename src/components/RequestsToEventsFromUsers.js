@@ -146,7 +146,10 @@ export default class RequestsToEventsFromUsers extends Component {
                     </TableRow>
                  </TableHead>
                  <TableBody >
-                  {
+                  {requests.length===0 ?
+                            <TableRow align="center">
+                                <td colSpan ="6"> No events which you want to join.</td>
+                            </TableRow>:
                      requests.map((request,index)=>(
                               <StyledTableRow    key={request.participationId} onClick={this.toggle}  >
                                 <StyledTableCell >{request.userPAIDto.email}</StyledTableCell>

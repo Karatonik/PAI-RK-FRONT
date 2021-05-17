@@ -93,7 +93,6 @@ const email = localStorage.getItem('email')
               <Table className='ui-table zui-table-horizontal zui-table-highlight'>
                 <TableHead  > 
                   <TableRow  >   
-                          <StyledTableCell >ID</StyledTableCell >
                           <StyledTableCell >Name</StyledTableCell >
                           <StyledTableCell >Province</StyledTableCell >
                           <StyledTableCell >City</StyledTableCell >
@@ -104,16 +103,18 @@ const email = localStorage.getItem('email')
                     </TableRow>
                  </TableHead>
                  <TableBody >
-                  {
+                  {events.length===0 ?
+                            <TableRow align="center">
+                                <td colSpan ="6"> You dont have any participation of any events.</td>
+                            </TableRow>:
                      events.map((event,index)=>(
                               <StyledTableRow    key={event.name} onClick={this.toggle}  >
-                              <StyledTableCell >{event.eventID}</StyledTableCell>
                               <StyledTableCell >{event.name}</StyledTableCell>
                               <StyledTableCell>{event.province}</StyledTableCell>
                               <StyledTableCell>{event.city}</StyledTableCell>
                               <StyledTableCell>{event.address}</StyledTableCell>
                               <StyledTableCell>{event.access}</StyledTableCell>
-                              <StyledTableCell>{event.dateOfCreate}{console.log(event.dateOfCreate)}</StyledTableCell>   
+                              <StyledTableCell>{event.dateOfCreate.replace(/:[^:]*$/,'').replace('T',' ')}</StyledTableCell>   
                               {/* to do button like info about event, redirect to showInfo */}
                               < Link to={'infoComments/'+event.eventID}className= "btn btn-sm btn-outline-primary">Show Info </Link>{' '}
                             </StyledTableRow>

@@ -89,8 +89,8 @@ const data = {
         },
        
     };
-
-  axios.get('http://localhost:8080/api/event/',config).then(
+   const email = localStorage.getItem('email') 
+  axios.get('http://localhost:8080/api/event/without/'+email,config).then(
     res => {
         
       console.log(localStorage.getItem('eventID'))
@@ -155,7 +155,10 @@ const data = {
                     </TableRow>
                  </TableHead>
                  <TableBody >
-                  {
+                  {events.length===0 ?
+                            <TableRow align="center">
+                                <td colSpan ="6"> No events for this moment.</td>
+                            </TableRow>:
                      events.map((event,index)=>(
                               <StyledTableRow    key={event.name}>
                               <StyledTableCell >{event.name}</StyledTableCell>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import {Redirect } from 'react-router-dom';
 class DeleteAcc extends Component {
     constructor(props){
         super(props);
@@ -17,7 +17,10 @@ class DeleteAcc extends Component {
         .then(res => {
             this.setState({ event: res.data });
             console.log(res)
-           
+            localStorage.clear();
+            this.props.setUser(null);
+        
+            this.props.history.push("/");
         })
      
         .catch(error => {

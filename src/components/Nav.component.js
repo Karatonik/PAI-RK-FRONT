@@ -10,9 +10,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import EmailIcon from '@material-ui/icons/Email';
 import StarIcon from '@material-ui/icons/Star';
+import LoginGoogle from './LoginGoogle';
+import LoginFb from './LoginFb';
+
 export default class Nav extends Component {
 
     handleLoguot=()=>{
+        
         var eventID = localStorage.getItem('eventID');
         localStorage.clear();
         localStorage.setItem('eventID',eventID);
@@ -49,6 +53,12 @@ export default class Nav extends Component {
                 <li className = "nav-item">
                     <Link to ={'/register'} className = "nav-link">Sign up</Link>
                 </li>
+                {/* <li>
+                <LoginFb/>
+            </li>
+            <li>
+                <LoginGoogle/>
+            </li> */}
             </ul>
             )
         }

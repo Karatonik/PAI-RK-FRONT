@@ -19,30 +19,30 @@ export default class Login extends Component {
         axios.post('http://localhost:8080/api/auth/singin/',data).then(
             res =>{
                
-                // var activated = localStorage.getItem('activated');
-                 localStorage.setItem('token',res.data.token);             
-                 localStorage.setItem('email',res.data.email);
-                 console.log(localStorage.getItem('activated'))
-                 console.log(res);
-                //  if(activated===('true')){
-                this.setState({
-                    loggedIn:true
-                    
-                });
-                this.props.setUser(res.data.user);
-               
-                window.location.reload();
-            // }else{
-            //     alert('Konto jeszcze nie zostało aktywowane!Sprawdź swoją skrzyńkę pocztową!');
-            // }
+               var activated = res.data.activated;
+               localStorage.setItem('token',res.data.token);             
+               localStorage.setItem('email',res.data.email);
+               console.log(localStorage.getItem('activated'))
+               console.log(res);
+              if(activated){
+              this.setState({
+                  loggedIn:true
+                  
+              });
+              this.props.setUser(res.data.user);
+             
+              window.location.reload();
+          }else{
+          
+              alert('Konto jeszcze nie zostało aktywowane!Sprawdź swoją skrzyńkę pocztową!');
+          }
 
-            }
-        ).catch(err =>{
-            alert('Email or password is incorrect!');
-            window.location.reload();
-        })
-    };
-
+          }
+      ).catch(err =>{
+          alert('Email or password is incorrect!');
+          window.location.reload();
+      })
+  };
     render() {
         if(this.state.loggedIn){
             return <Redirect to ={'/'}/>
