@@ -22,13 +22,16 @@ export default class Registration extends Component {
             this.setState({    
     
             });
+            
             window.location.reload();
                console.log(res)
+               alert("Zostałeś zarejestrowany! Sprawdź skrzynkę mailową!")
            },
            
         ).catch(
+            
             err=>{
-                
+                alert(err.data.errors)
             } 
         )   
     }  
