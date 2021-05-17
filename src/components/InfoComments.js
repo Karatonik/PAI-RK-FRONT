@@ -7,11 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
-import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit';
+import {MDBCardImage } from 'mdb-react-ui-kit';
 export default class InfoComments extends Component {
   constructor(props){
     super(props);
@@ -36,7 +35,7 @@ componentDidMount =()=> {
 
 
   const eventID= this.props.match.params.id
-  axios.get("http://localhost:8080/api/event/"+eventID)
+  axios.get("https://pai-event.herokuapp.com/api/event/"+eventID)
       .then(res => {
           this.setState({ event: res.data });
           console.log(res)
@@ -59,7 +58,7 @@ componentDidMount =()=> {
   };
 
       
-      axios.get("http://localhost:8080/api/event/comments/"+eventID,config).then(
+      axios.get("https://pai-event.herokuapp.com/api/event/comments/"+eventID,config).then(
       res => {
        
         console.log(res)
@@ -104,7 +103,7 @@ const data ={
 
 const eventID= this.props.match.params.id
 console.log("Current eventID for comm: ",eventID)
-  axios.post('http://localhost:8080/api/comm/'+email+'/'+eventID+'/'+data.text,config).then(
+  axios.post('https://pai-event.herokuapp.com/api/comm/'+email+'/'+eventID+'/'+data.text,config).then(
      res =>{
          
       this.setState({
@@ -135,7 +134,7 @@ console.log("Current eventID for comm: ",eventID)
 
 deleteComment=(commentId)=>{ 
   let email = localStorage.getItem('email')
-  axios.delete("http://localhost:8080/api/comm/"+commentId+"/"+email)
+  axios.delete("https://pai-event.herokuapp.com/api/comm/"+commentId+"/"+email)
   .then(res=>{
       if(res.data){
           this.setState({

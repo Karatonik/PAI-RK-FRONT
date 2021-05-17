@@ -16,7 +16,7 @@ export default class Reset extends Component {
         console.log('http://localhost:8080/api/user/pwd/'+ data.key +"/"+data.password);
 
 
-        axios.put('http://localhost:8080/api/user/pwd/'+ data.key +"/"+data.password).then(
+        axios.put('https://pai-event.herokuapp.com/api/user/pwd/'+ data.key +"/"+data.password).then(
             res =>{
                 console.log(res);
                 this.setState({

@@ -31,7 +31,7 @@ export default class AcceptUserToEvent extends Component {
          
       };
     
-        axios.put('http://localhost:8080/api/event/acceptPart/'+participationId+'/'+eventID,config).then(
+        axios.put('https://pai-event.herokuapp.com/api/event/acceptPart/'+participationId+'/'+eventID,config).then(
            res =>{
                
             

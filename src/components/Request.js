@@ -31,7 +31,7 @@ export default class RequestUser extends Component {
          
       };
         var access =  '';
-        axios.get('http://localhost:8080/api/event/'+eventID,config).then(
+        axios.get('https://pai-event.herokuapp.com/api/event/'+eventID,config).then(
             
             res =>{
                 access=res.data.access;
@@ -54,7 +54,7 @@ export default class RequestUser extends Component {
         
       
 
-        axios.post('http://localhost:8080/api/user/rtje/'+email+'/'+eventID,config).then(
+        axios.post('https://pai-event.herokuapp.com/api/user/rtje/'+email+'/'+eventID,config).then(
            res =>{
                 //  localStorage.setItem('eventID',res.data.eventID);
                 // localStorage.setItem('participationId',res.data.participationId);

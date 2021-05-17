@@ -16,7 +16,7 @@ export default class Forgot extends Component {
 
        
         
-        axios.get('http://localhost:8080/api/mail/reset/'+data.email).then(
+        axios.get('https://pai-event.herokuapp.com/api/mail/reset/'+data.email).then(
             res =>{
                 this.setState({
                     successMessage:"Success: You have been successfully reseted!"

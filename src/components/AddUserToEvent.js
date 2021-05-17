@@ -32,7 +32,7 @@ export default class AddUserToEvent extends Component {
       const data = {
             email:this.email
       }
-        axios.post('http://localhost:8080/api/event/addUser/'+data.email+'/'+eventID,config).then(
+        axios.post('https://pai-event.herokuapp.com/api/event/addUser/'+data.email+'/'+eventID,config).then(
            res =>{
               
 

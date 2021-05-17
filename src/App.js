@@ -23,7 +23,9 @@ import AcceptInvite from './components/AcceptInvite';
 import RequestToEvent from './components/RequestToEvent';
 import AcceptUserToEvent from './components/AcceptUserToEvent';
 import EventIPartiAlready from './components/EventIPartiAlready';
-
+import LoginGoogle from './components/LoginGoogle';
+import LoginFb from './components/LoginFb';
+import MyGoogleMap from './components/MyGoogleMap';
 
 export default class App extends Component {
 
@@ -90,9 +92,18 @@ setUser = user =>{
       <div className = "auth-wrapper">
             <Switch>
               <Route exact path = "/" component = {()=><Home user ={this.state.user} />}/>
+              <Route exact path="/map" component={() => 
+                  <MyGoogleMap 
+                    markerClick={this.test} 
+                    markers={[{ name: 'Impreza A', x: 53.15, y: 18.00 }, {  name: 'Impreza B', x: 53.15, y: 18.10 }]}
+                    onMapClick={this.test}
+                    mapCenter={{ x: 53.15, y: 18.00 }} 
+                  />} />
               <Route exact path = "/login" component = {()=> <Login setUser={this.setUser}/>}/>
               <Route exact path = "/register" component = {Registration}/>
               <Route exact path = "/forgot" component = {Forgot }/>
+              <Route exact path = "/facebook" component = {LoginFb}/>
+              <Route exact path = "/google" component = {LoginGoogle}/>
               <Route exact path = "/reset/:id" component = {Reset }/>
             </Switch>
         </div>

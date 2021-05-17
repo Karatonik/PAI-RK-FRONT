@@ -40,7 +40,7 @@ export default class MyInvites extends Component {
         };
         const email = localStorage.getItem('email')
         console.log(participationId,eventID,email);
-        axios.put('http://localhost:8080/api/user/accept/'+participationId+'/'+email,config).then(
+        axios.put('https://pai-event.herokuapp.com/api/user/accept/'+participationId+'/'+email,config).then(
            res =>{
           
             this.setState({
@@ -88,7 +88,7 @@ export default class MyInvites extends Component {
     const email = localStorage.getItem('email')
     const eventID = localStorage.getItem('eventID')
     console.log(eventID)
-    axios.get('http://localhost:8080/api/parti/user/from/event/'+email,config).then(
+    axios.get('https://pai-event.herokuapp.com/api/parti/user/from/event/'+email,config).then(
         
       res => {  
       

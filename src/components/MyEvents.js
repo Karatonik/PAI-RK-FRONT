@@ -41,7 +41,7 @@ handleSubmit=e=>{
 const data = {
       email:this.email
 }
-  axios.post('http://localhost:8080/api/event/addUser/'+data.email+'/1',config).then(
+  axios.post('https://pai-event.herokuapp.com/api/event/addUser/'+data.email+'/1',config).then(
      res =>{
           localStorage.setItem('eventID',res.data.eventID);
           localStorage.setItem('participationId',res.data.participationId);
@@ -87,7 +87,7 @@ const data = {
   
 const email = localStorage.getItem('email')
   
-  axios.get('http://localhost:8080/api/user/events/admin/'+email,config).then(
+  axios.get('https://pai-event.herokuapp.com/api/user/events/admin/'+email,config).then(
     res => {
         
       localStorage.setItem(res.data.eventID,'eventID')

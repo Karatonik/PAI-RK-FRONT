@@ -10,8 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import EmailIcon from '@material-ui/icons/Email';
 import StarIcon from '@material-ui/icons/Star';
-import LoginGoogle from './LoginGoogle';
-import LoginFb from './LoginFb';
+
 
 export default class Nav extends Component {
 
@@ -52,13 +51,12 @@ export default class Nav extends Component {
                 </li>
                 <li className = "nav-item">
                     <Link to ={'/register'} className = "nav-link">Sign up</Link>
+                </li> <li className = "nav-item">
+                    <Link to ={'/facebook'} className = "nav-link">Login Facebook</Link>
                 </li>
-                {/* <li>
-                <LoginFb/>
-            </li>
-            <li>
-                <LoginGoogle/>
-            </li> */}
+                <li className = "nav-item">
+                    <Link to ={'/google'} className = "nav-link">Login Google</Link>
+                </li>
             </ul>
             )
         }

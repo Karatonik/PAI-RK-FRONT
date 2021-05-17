@@ -16,7 +16,7 @@ export default class Login extends Component {
             
         }
       
-        axios.post('http://localhost:8080/api/auth/singin/',data).then(
+        axios.post('https://pai-event.herokuapp.com/api/auth/singin/',data).then(
             res =>{
                
                var activated = res.data.activated;

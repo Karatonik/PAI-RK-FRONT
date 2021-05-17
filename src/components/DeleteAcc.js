@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Redirect } from 'react-router-dom';
 class DeleteAcc extends Component {
     constructor(props){
         super(props);
@@ -13,7 +12,7 @@ class DeleteAcc extends Component {
     handleSubmit = e =>{
         e.preventDefault();
         const email = localStorage.getItem('email')
-        axios.get("http://localhost:8080/api/mail/delete/"+email)
+        axios.get("https://pai-event.herokuapp.com/api/mail/delete/"+email)
         .then(res => {
             this.setState({ event: res.data });
             console.log(res)

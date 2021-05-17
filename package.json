@@ -30,6 +30,7 @@
     "react-dropdown-button": "1.0.11",
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.2.2",
+    "react-google-maps": "^9.4.5",
     "react-hot-toast": "1.0.2",
     "react-paginate": "7.1.2",
     "react-router-dom": "5.2.0",

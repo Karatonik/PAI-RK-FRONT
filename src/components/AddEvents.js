@@ -36,7 +36,7 @@ export default class AddEvents extends Component {
             },
            
         };
-         axios.post('http://localhost:8080/api/event/'+data.name+'/'+data.province+'/'+data.city+'/'+data.address+'/'+data.access+'/'+data.dateOfStartEvent+'/'+email,config)
+         axios.post('https://pai-event.herokuapp.com/api/event/'+data.name+'/'+data.province+'/'+data.city+'/'+data.address+'/'+data.access+'/'+data.dateOfStartEvent+'/'+email,config)
         .then(
            res =>{
             localStorage.setItem('eventID',JSON.stringify(res.data.eventID));
