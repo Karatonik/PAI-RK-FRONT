@@ -23,7 +23,9 @@ class DeleteAcc extends Component {
         })
      
         .catch(error => {
+            alert(error.data.errors)
             console.log(error)
+            
         });
   
 

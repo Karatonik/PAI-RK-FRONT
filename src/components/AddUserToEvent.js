@@ -50,7 +50,7 @@ export default class AddUserToEvent extends Component {
            
         ).catch(
             err=>{
-               
+              alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                

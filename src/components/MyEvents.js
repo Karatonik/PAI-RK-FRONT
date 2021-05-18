@@ -58,6 +58,7 @@ const data = {
      
   ).catch(
       err=>{
+        alert(err.data.errors)
          
           this.setState({errorMessage: err.message})
          
@@ -102,6 +103,7 @@ const email = localStorage.getItem('email')
     },
     
  err =>{
+  alert(err.data.errors)
     console.log(err)
 }
 )

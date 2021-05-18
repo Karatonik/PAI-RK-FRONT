@@ -57,7 +57,7 @@ export default class MyInvites extends Component {
            
         ).catch(
             err=>{
-               
+              alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                
@@ -102,6 +102,7 @@ export default class MyInvites extends Component {
       },
       
    err =>{
+    alert(err.data.errors)
       console.log(err)
   }
   )

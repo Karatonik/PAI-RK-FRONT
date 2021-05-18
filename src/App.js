@@ -26,6 +26,7 @@ import EventIPartiAlready from './components/EventIPartiAlready';
 import LoginGoogle from './components/LoginGoogle';
 import LoginFb from './components/LoginFb';
 import MyGoogleMap from './components/MyGoogleMap';
+import Avatar from './components/Avatar';
 
 export default class App extends Component {
 
@@ -84,6 +85,7 @@ setUser = user =>{
             <Route exact path = "/invitesFromUsers" component = {MyInvites}/>
             <Route exact path = "/requestsFromUsers" component = {RequestsToEventsFromUsers}/>
             <Route exact path = "/infoComments/:id" component = {InfoComments}/>
+            <Route exact path = "/addAvatar" component = {Avatar}/>
          
 
         </Switch>

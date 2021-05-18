@@ -57,6 +57,7 @@ export default class AddEvents extends Component {
            
         ).catch(
             err=>{
+                alert(err.data.errors)
                 this.setState({
                    
                     cls:'danger'

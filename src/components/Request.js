@@ -42,7 +42,7 @@ export default class RequestUser extends Component {
             },
         ).catch(
             err=>{
-            
+                alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                
@@ -80,7 +80,7 @@ export default class RequestUser extends Component {
            
         ).catch(
             err=>{
-            
+                alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                

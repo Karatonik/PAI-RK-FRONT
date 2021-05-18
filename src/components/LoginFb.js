@@ -35,11 +35,13 @@ export default class LoginFb extends Component {
                     window.location.reload();
                 }
             ).catch(err => {
+                alert(err.data.errors)
                 // snackbar
                 this.setState({ errorMessage: err.message })
             })
 
         } else {
+           
             // snackbar
             this.setState({ errorMessage: "Logowanie za pomocą Facebook'a nie powiodło się." })
         }

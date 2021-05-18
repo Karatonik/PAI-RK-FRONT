@@ -10,6 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import EmailIcon from '@material-ui/icons/Email';
 import StarIcon from '@material-ui/icons/Star';
+import FaceIcon from '@material-ui/icons/Face';
 
 
 export default class Nav extends Component {
@@ -36,6 +37,7 @@ export default class Nav extends Component {
                         <Dropdown.Item href="/invitesFromUsers"><Icon component= {EmailIcon}/>Invites from other events</Dropdown.Item>
                         <Dropdown.Item href="/eventsIPartiAlready"><Icon component= {EventIcon}/>Events which I participate already</Dropdown.Item>
                         <Dropdown.Item href="/deleteAcc"><Icon component= {DeleteIcon}/>Delete Account</Dropdown.Item>
+                        <Dropdown.Item href="/addAvatar"><Icon component= {FaceIcon}/>Add avatar</Dropdown.Item>
                         <Dropdown.Item href="/" onClick ={this.handleLoguot}>  <Icon component= {ExitToAppIcon}/> Logout</Dropdown.Item>
                        
                     </DropdownButton>

@@ -33,12 +33,13 @@ export default class Login extends Component {
              
               window.location.reload();
           }else{
-          
+            alert(res.data.errors)
               alert('Konto jeszcze nie zostało aktywowane!Sprawdź swoją skrzyńkę pocztową!');
           }
 
           }
       ).catch(err =>{
+        alert(err.data.errors)
           alert('Email or password is incorrect!');
           window.location.reload();
       })

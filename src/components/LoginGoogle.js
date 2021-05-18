@@ -39,6 +39,7 @@ export default class LoginGoogle extends Component {
                     window.location.reload();
                 }
             ).catch(err => {
+                alert(err.data.errors)
                 // snackbar
                 this.setState({ errorMessage: err.message })
             })

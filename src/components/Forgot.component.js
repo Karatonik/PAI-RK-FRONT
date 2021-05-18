@@ -25,6 +25,7 @@ export default class Forgot extends Component {
             }
         ).catch(
             err =>{
+                alert(err.data.errors)
                 this.setState({errorMessage: err.message})
             }
         )

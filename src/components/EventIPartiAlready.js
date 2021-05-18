@@ -47,6 +47,7 @@ const email = localStorage.getItem('email')
     },
     
  err =>{
+  alert(err.data.errors)
     console.log(err)
 }
 )

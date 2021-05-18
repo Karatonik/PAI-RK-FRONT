@@ -43,6 +43,7 @@ componentDidMount =()=> {
       })
    
       .catch(error => {
+        alert(error.data.errors)
           console.log(error)
       });
 
@@ -71,6 +72,7 @@ componentDidMount =()=> {
       })
    
       .catch(error => {
+        alert(error.data.errors)
           console.log(error)
       });
 
@@ -119,8 +121,8 @@ console.log("Current eventID for comm: ",eventID)
      },
      
   ).catch(
-      err=>{
-         
+      err=>{  
+        alert(err.data.errors)
           this.setState({errorMessage: err.message})
          
          
@@ -144,7 +146,9 @@ deleteComment=(commentId)=>{
           console.log(res)
       }
       else{
+        alert(res.data.errors)
        alert('Its not your comment!')
+       
       }
   });
 };

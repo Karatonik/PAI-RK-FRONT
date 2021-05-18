@@ -42,13 +42,14 @@ export default class AccepsInvite extends Component {
             //   setTimeout(() => {
             //     window.location.reload();
             //   }, 1500);
+         
                console.log(res)
              
            },
            
         ).catch(
             err=>{
-               
+                alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                

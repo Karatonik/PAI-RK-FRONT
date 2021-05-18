@@ -53,6 +53,7 @@ export default class RequestToEvent extends Component {
     },
     
  err =>{
+  alert(err.data.errors)
     console.log(err)
 }
 )

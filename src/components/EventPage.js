@@ -63,7 +63,7 @@ const data = {
      
   ).catch(
       err=>{
-         
+        alert(err.data.errors)
           this.setState({errorMessage: err.message})
          
          
@@ -104,6 +104,7 @@ const data = {
     },
     
  err =>{
+  alert(err.data.errors)
     console.log(err)
 }
 )
