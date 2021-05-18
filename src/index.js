@@ -5,15 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
-axios.interceptors.request.use(
-  config => {
-    config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
+
+axios.defaults.baseURL = 'https://pai-event.herokuapp.com/api'
+
 
 ReactDOM.render(
   <React.StrictMode>

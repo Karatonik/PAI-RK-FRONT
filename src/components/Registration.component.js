@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import MyToast from './MyToast';
 
 export default class Registration extends Component {
+     
     state={
         errorMessage: '',
         successMessage:''
@@ -12,57 +14,33 @@ export default class Registration extends Component {
             email:this.email,
             password:this.password,
             nick:this.nick,
-    
-          
-           
+     
         };
-        axios.post('http://localhost:8080/api/auth/singup/',data).then(
+        axios.post('/auth/singup/',data).then(
            res =>{
-      
-            this.setState({
-               
-                 successMessage:"Success: You have been successfully registered!"
-            })
-           
-            //   setTimeout(() => {
-            //     window.location.reload();
-            //   }, 1500);
+            localStorage.setItem("status", JSON.stringify(res.data.activated));
+            this.setState({    
+    
+            });
+            
+            window.location.reload();
                console.log(res)
-               
+               alert("Zostałeś zarejestrowany! Sprawdź skrzynkę mailową!")
            },
            
         ).catch(
+            
             err=>{
-               
-                this.setState({errorMessage: err.message})
-               
-               
-            }
-            
-        )
-        
-          
-        
-    }
-    
-    render() {
-     
-          
-        
+            } 
+        )   
+    }  
+    render() {       
         return (
-          <form onSubmit={this.handleSubmit} >
-              {this.state.errorMessage && 
-              <div class="message" style={{color:'red'}}>Error: Email is already taken!         
-
+        
+          <form onSubmit={this.handleSubmit}>
+           <div style={{"display":this.state.show ? "block" : "none"}}>
+                    <MyToast show={this.state.show} message={"Projekt Deleted Successfully."}type={"danger"}/>
                 </div>
-              }
-            
-               
-               { this.state.successMessage &&
-            <div class="message" style={{color:'green'}}> Success: You have been successfully registered!        
-
-            </div>
-                 } 
               <h3>Sign Up</h3>
 
               <div className = "form-group">
@@ -80,7 +58,6 @@ export default class Registration extends Component {
                   <input type = "text" required autoComplete="off" className = "form-control" placeholder = "Nick"
                   onChange={e=>this.nick=e.target.value}/>
               </div>
-
               <button className = "btn btn-primary btn-block">Sign Up</button>
               <button type="reset" className="btn btn-primary btn-block">Reset</button>
           </form>

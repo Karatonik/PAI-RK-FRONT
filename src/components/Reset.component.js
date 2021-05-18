@@ -13,10 +13,10 @@ export default class Reset extends Component {
             password : this.password
         };
 
-        console.log('http://localhost:8080/api/user/pwd/'+ data.key +"/"+data.password);
+     
 
 
-        axios.put('http://localhost:8080/api/user/pwd/'+ data.key +"/"+data.password).then(
+        axios.put('/user/pwd/'+ data.key +"/"+data.password).then(
             res =>{
                 console.log(res);
                 this.setState({
@@ -26,6 +26,7 @@ export default class Reset extends Component {
         ).catch(
             err =>{
                 this.setState({
+                    
                     message:err.response.data.message
                 })
             }

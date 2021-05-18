@@ -1,12 +1,4 @@
-import React, { Component, Fragment } from 'react'
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React, { Component } from 'react'
 import axios from 'axios';
 import {Card,Form,Col,Button,ButtonGroup} from 'react-bootstrap'
 import CardHeader from '@material-ui/core/CardHeader';
@@ -15,10 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
-import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Link } from 'react-router-dom';
+
+import {MDBCardImage } from 'mdb-react-ui-kit';
 export default class InfoComments extends Component {
   constructor(props){
     super(props);
@@ -39,11 +31,11 @@ export default class InfoComments extends Component {
 
 
   
-componentDidMount() {
+componentDidMount =()=> {
 
 
-
-  axios.get("http://localhost:8080/api/event/1")
+  const eventID= this.props.match.params.id
+  axios.get("http://localhost:8080/api/event/"+eventID)
       .then(res => {
           this.setState({ event: res.data });
           console.log(res)
@@ -51,29 +43,36 @@ componentDidMount() {
       })
    
       .catch(error => {
+
           console.log(error)
       });
 
     // comments   
     const config ={
       headers:{
-          Authorization: 'Bearer ' + localStorage.getItem('token') 
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+          'Accept' : 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Expose-Headers': 'Authorization'
       },
      
   };
 
-
-      axios.get("http://localhost:8080/api/event/comments/1",config)
-      .then(res => {
-          this.setState({ 
-            comments: res.data 
-          });
+      
+      axios.get("http://localhost:8080/api/event/comments/"+eventID,config).then(
+      res => {
+       
+        console.log(res)
+        this.setState({ comments: res.data });
+    
+          console.log("EventID: ",eventID)
           console.log("All comments: ",res)
           
           
       })
    
       .catch(error => {
+
           console.log(error)
       });
 
@@ -86,9 +85,9 @@ state={}
 handleSubmit=e=>{
   e.preventDefault();
   const email =localStorage.getItem('email');
-  const eventID =localStorage.getItem('eventID');
 
-  console.log(email,eventID)
+
+  console.log(email)
 
   const config ={
     headers:{
@@ -103,7 +102,10 @@ handleSubmit=e=>{
 const data ={
   text:this.text
 }
-  axios.post('http://localhost:8080/api/comm/'+email+'/'+eventID+'/'+data.text,config).then(
+
+const eventID= this.props.match.params.id
+console.log("Current eventID for comm: ",eventID)
+  axios.post('/comm/'+email+'/'+eventID+'/'+data.text,config).then(
      res =>{
          
       this.setState({
@@ -119,8 +121,8 @@ const data ={
      },
      
   ).catch(
-      err=>{
-         
+      err=>{  
+
           this.setState({errorMessage: err.message})
          
          
@@ -131,11 +133,12 @@ const data ={
   
 }
 
-  
+
 deleteComment=(commentId)=>{ 
-  axios.delete("http://localhost:8080/api/comm/"+commentId)
+  let email = localStorage.getItem('email')
+  axios.delete("/comm/"+commentId+"/"+email)
   .then(res=>{
-      if(res.data!=null){
+      if(res.data){
           this.setState({
               comments:this.state.comments.filter(comment => comment.commentId !== commentId)
 
@@ -143,68 +146,54 @@ deleteComment=(commentId)=>{
           console.log(res)
       }
       else{
-        console.log('error')
+     
+       alert('Its not your comment!')
+       
       }
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+setComments = comments =>{
+  this.setState({
+    comments:comments
+  });
+};
 
 
 render() {
   const {event,comments} =this.state;
 
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: '#D0FFC8',
-    color: '#295820',
-    fontWeight:"bold",
-    fontSize:15
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-
 
 
   return (
-    <>
+ <div style={{width:'auto',height:'auto',margin:'10px'}}>
 
-<div style={{width:'500px',position:'fixed',top:200,right:30}}>
-<Card style={{backgroundColor:'#D0FFC8'}} >
+ {
+   comments.map((comment,index)=>(
+ <Card style={{overflow:'auto',borderWidth:0,width:'500px',left:'850px',top:'170px',position:'relative',backgroundColor:'#D0FFC8'}} >
+    <CardHeader
+       avatar={
+        <Avatar aria-label="recipe">
+          R
+        </Avatar>
+      }
+        title= {comment.userEmail} 
+        subheader={comment.date.slice(0, comment.date.lastIndexOf("T"))}
+      />
+      <CardContent>
+        <Typography >
+         {comment.text}
+        </Typography>
+      
+      </CardContent>
+      <ButtonGroup>
+          <IconButton aria-label="delete" variant = "outline-danger" onClick={this.deleteComment.bind(this,comment.commentId)}>  
+             <DeleteIcon />
+        </IconButton>
+        </ButtonGroup>
+    </Card>
+       ))
+      }
+<Card style={{backgroundColor:'#D0FFC8',width:'500px',left:'850px',top:'180px',position:'relative'}} >
             <Card.Header>Leave your opinion about this event!</Card.Header>  
                <Form onSubmit={this.handleSubmit}>
                     <Card.Body >
@@ -227,73 +216,32 @@ const StyledTableRow = withStyles((theme) => ({
 
             </Form>
         </Card>
-  </div>
- <div style={{width:'400px',marginLeft:'56.5%',marginTop:'10%',right:550}} >
- {
-   comments.map((comment,index)=>(
- <Card style={{overflow:'auto',borderWidth:0}} >
-    <CardHeader
-       avatar={
-        <Avatar aria-label="recipe">
-          R
-        </Avatar>
-      }
-        title= {comment.userEmail} 
-        subheader={comment.date}
-      />
+
+  <Card style={{width:'500px',top:'100px',left:'50px',position:'fixed',backgroundColor:'#D0FFC8'}}>
+      <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/184.jpg' position='top' alt='...' />
       <CardContent>
-        <Typography >
-         {comment.text}
-        </Typography>
+    <CardHeader style={{textAlign:'center'}}>{event.name}</CardHeader>
+    <Typography  style={{textAlign:'center'}}>
+          Name: {event.name}
+        </Typography >
+        <Typography  style={{textAlign:'center'}}>
+          Province: {event.province}
+        </Typography >
+        <Typography  style={{textAlign:'center'}}>
+          City: {event.city}
+        </Typography >
+        <Typography  style={{textAlign:'center'}}>
+          Street: {event.address}
+        </Typography >
       
-      </CardContent>
-      <ButtonGroup>
-          {/* <Link to={"edit/"+comment.commentId }className= "btn btn-sm btn-outline-primary"><Icon component= {EditIcon}/></Link>{' '} * */}
-         {/* <IconButton  aria-label="Edit"  variant = "outline-danger" onClick={this.handleTaskUpdate.bind(this,comment.commentId)}>  
-             <EditIcon />
-        </IconButton> */}
-          <IconButton aria-label="delete" variant = "outline-danger" onClick={this.deleteComment.bind(this,comment.commentId)}>  
-             <DeleteIcon />
-        </IconButton>
-        </ButtonGroup>
+        <Typography  style={{textAlign:'center'}}>
+         Date of start event: {event.dateOfStarEvent}
+        </Typography >
+
+        </CardContent>
     </Card>
-       ))
-      }
- </div>
-    <TableContainer  style={{width:'900px',marginLeft:'3%',position:'fixed',top:200,left:0}} component={Paper} elevation={0}>
-        <Table className='ui-table zuis-table-horizontal zuis-table-highlight'>
-          <TableHead  > 
-            <TableRow  >   
-                    <StyledTableCell >ID</StyledTableCell >
-                    <StyledTableCell >Name</StyledTableCell >
-                    <StyledTableCell >Province</StyledTableCell >
-                    <StyledTableCell >City</StyledTableCell >
-                    <StyledTableCell >Address</StyledTableCell >
-                    <StyledTableCell >Access</StyledTableCell >
-                    <StyledTableCell >Date of create</StyledTableCell >
-              </TableRow>
-           </TableHead>
-           <TableBody >
      
-                        <StyledTableRow  >
-                          <StyledTableCell >{event.eventID}</StyledTableCell>
-                        <StyledTableCell >{event.name}</StyledTableCell>
-                        <StyledTableCell>{event.province}</StyledTableCell>
-                        <StyledTableCell>{event.city}</StyledTableCell>
-                        <StyledTableCell>{event.address}</StyledTableCell>
-                        <StyledTableCell>{event.access}</StyledTableCell>
-                        <StyledTableCell>{event.dateOfCreate}</StyledTableCell>    
-                                     
-                      </StyledTableRow>
-                      
-                
-             
-             
-           </TableBody>    
-        </Table>
-        </TableContainer>
-       
-</>
+</div>
 
   );
   

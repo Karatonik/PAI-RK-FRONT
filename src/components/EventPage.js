@@ -7,12 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {Card} from 'react-bootstrap'
-import { Button } from '@material-ui/core';
-import WarningIcon from '@material-ui/icons/Warning';
-import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
-
+import {Link} from 'react-router-dom';
 export default class EventPage extends Component {
   constructor(props){
     super(props);
@@ -25,12 +21,13 @@ export default class EventPage extends Component {
   }
 }
 
+
 handleSubmit=e=>{
   e.preventDefault();
   const email =localStorage.getItem('email');
   const eventID =localStorage.getItem('eventID');
 
-  console.log(email,eventID)
+  console.log("Email "+  email, "Event ID " +eventID)
 
   const config ={
     headers:{
@@ -39,13 +36,19 @@ handleSubmit=e=>{
         'Content-Type': 'application/json',
         'Access-Control-Expose-Headers': 'Authorization'
     },
-  
+   
+   
 };
-  axios.post('http://localhost:8080/api/user/rtje/'+email+'/'+eventID).then(
+const data = {
+      email:this.email
+}
+  axios.post('/event/addUser/'+data.email+'/'+eventID,config).then(
      res =>{
+          localStorage.setItem('eventID',res.data.eventID);
           localStorage.setItem('participationId',res.data.participationId);
-          localStorage.setItem('request',res.data.request);
-          console.log(" Id parti: ",localStorage.getItem('participationId'),localStorage.getItem("request"));
+          // localStorage.setItem('request',res.data.request);
+          console.log(" Id parti: ",localStorage.getItem('participationId'))
+
       this.setState({
          
           
@@ -60,7 +63,7 @@ handleSubmit=e=>{
      
   ).catch(
       err=>{
-         
+        alert(err.data.errors)
           this.setState({errorMessage: err.message})
          
          
@@ -73,23 +76,26 @@ handleSubmit=e=>{
 }
 
 
-
-
-
-
-
-
   toggle = () => this.setState((currentState) => ({show: !currentState.show}));
   close = () => this.setState((currentState) =>({show:false}));
 
 
   componentDidMount = ()=> {
-  
-  axios.get('http://localhost:8080/api/event/').then(
-    res => {
-      // localStorage.setItem('email',res.data.email);  
-        console.log(res)
+     const eventID = localStorage.getItem('eventID')
+     console.log(eventID)
+    const config ={
+        headers:{
+            Authorization: 'Bearer ' + localStorage.getItem('token') 
+        },
        
+    };
+   const email = localStorage.getItem('email') 
+  axios.get('/event/without/'+email,config).then(
+    res => {
+        
+      console.log(localStorage.getItem('eventID'))
+      console.log(res)
+        
 
             this.setState({
               events:res.data
@@ -109,68 +115,6 @@ handleSubmit=e=>{
       partys:partys
     });
   };
-
-
-
-
-
-
-
-  // state={}
-  // handleSubmit=e=>{
-  //     e.preventDefault();
-  //     const email =localStorage.getItem('email');
-  //     const eventId = localStorage.getItem('eventID');
-  //     console.log(eventId)
-      
-  //     const data ={
-  //       email:this.email,
-        
-          
-  
-        
-         
-  //     };
-  //     const config ={
-  //         headers:{
-  //             Authorization: 'Bearer ' + localStorage.getItem('token'),
-  //             'Accept' : 'application/json',
-  //             'Content-Type': 'application/json',
-  //             'Access-Control-Expose-Headers': 'Authorization'
-  //         },
-         
-  //     };
-  //      axios.post('http://localhost:8080/api/user/rtje'+data.email,config)
-     
-  
-  //     .then(
-  //        res =>{
-  //         this.setState({
-  //             message:res.data.message,
-  //             cls:'success'
-  //         })
-             
-  //            console.log(res)
-             
-  //        } 
-         
-  //     ).catch(
-  //         err=>{
-  //             this.setState({
-                 
-  //                 cls:'danger'
-  //             })
-  //         }
-          
-  //     )
-      
-        
-      
-  // }
-
-
-
-
 
     render() {
         const {events} =this.state;
@@ -195,62 +139,42 @@ handleSubmit=e=>{
           },
         },
       }))(TableRow);
-      
-    
-     
-      
+
         return (
-          <>
-          <div>
-              {this.state.show && <Card  style={{width:'400px',margin:'10px',left:'500px',backgroundColor:'#D0FFC8',fontSize:'20px'}}>    
-                 <Icon  component= {WarningIcon} />
-                 <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
-                      Request to join event
-                      <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
-                                Yes
-                                </Button>
-                    
-                    <Button onClick={this.close} variant = "outline-danger" style ={{backgroundColor:' #ff6666',margin:'7px'}}>
-                      No
-                    </Button >
-                 <Icon component= {WarningIcon} style={{marginLeft:"94%"}} />
-                 <Icon component= {WarningIcon} style={{marginTop:'-6%'}}/>
-                 </Card>} 
-          </div>
-          <TableContainer component={Paper} elevation={0}>
+          <TableContainer component={Paper} elevation={0} style={{marginTop:'12%'}}>
               <Table className='ui-table zui-table-horizontal zui-table-highlight'>
                 <TableHead  > 
                   <TableRow  >   
-                          <StyledTableCell >ID</StyledTableCell >
                           <StyledTableCell >Name</StyledTableCell >
                           <StyledTableCell >Province</StyledTableCell >
                           <StyledTableCell >City</StyledTableCell >
                           <StyledTableCell >Address</StyledTableCell >
                           <StyledTableCell >Access</StyledTableCell >
                           <StyledTableCell >Date of create</StyledTableCell >
+                          <StyledTableCell >Actions</StyledTableCell >
                     </TableRow>
                  </TableHead>
                  <TableBody >
-                  {
+                  {events.length===0 ?
+                            <TableRow align="center">
+                                <td colSpan ="6"> No events for this moment.</td>
+                            </TableRow>:
                      events.map((event,index)=>(
-                              <StyledTableRow    key={event.name} onClick={this.toggle}  >
-                                <StyledTableCell >{event.eventID}</StyledTableCell>
+                              <StyledTableRow    key={event.name}>
                               <StyledTableCell >{event.name}</StyledTableCell>
                               <StyledTableCell>{event.province}</StyledTableCell>
                               <StyledTableCell>{event.city}</StyledTableCell>
                               <StyledTableCell>{event.address}</StyledTableCell>
                               <StyledTableCell>{event.access}</StyledTableCell>
-                              <StyledTableCell>{event.dateOfCreate}</StyledTableCell>    
-                                           
+                              <StyledTableCell>{event.dateOfCreate.replace(/:[^:]*$/,'').replace('T',' ') }</StyledTableCell>    
+                              <StyledTableCell>< Link to={"event/"+event.eventID }className= "btn btn-sm btn-outline-primary"> Join</Link>{' '}
+                              </StyledTableCell>   
                             </StyledTableRow>
-                            
                       ))
                    }
-                   
                  </TableBody>    
               </Table>
               </TableContainer>
-     </>
         );
         
     }

@@ -6,7 +6,8 @@ class MyToast  extends React.Component{
         const toastCss={
             position:'fixed',
             top:'10px',
-            right:'10px',
+            left:'10px',
+            height:'100px',
             zIndex:'1',
             boxShadow:'0 4px 8px 0rgba(0,0,0,0.2),0 6px 20px 0rgba(0,0,0,0.19)'
         };
