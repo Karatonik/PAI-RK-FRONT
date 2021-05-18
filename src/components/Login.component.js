@@ -39,7 +39,7 @@ export default class Login extends Component {
 
           }
       ).catch(err =>{
-        alert(err.data.errors)
+        alert(err.data)
           alert('Email or password is incorrect!');
           window.location.reload();
       })

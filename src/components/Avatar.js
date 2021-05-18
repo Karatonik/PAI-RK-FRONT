@@ -5,49 +5,37 @@ export default class Avatar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            image_file: null,
+            image_file: undefined,
             image_preview: '',
         }
     }
 
-    state={
-
-    }
+   
     handleImagePreview = (e) => {
         let image_as_base64 = URL.createObjectURL(e.target.files[0])
-        let image_as_files = e.target.files[0];
-
         this.setState({
             image_preview: image_as_base64,
-            image_as_files: image_as_files,
+            image_file: e.target.files[0],
         })
-        
     }
     
     handleSubmit=()=>{
-        if (this.state.image_as_files !== null){
+        if (this.state.image_file !== null){
         let formData = new FormData()
         formData.append('file', this.state.image_file);
         console.log(formData.getAll('data'))
-        // const config ={
-        //     headers:{
-        //         Authorization: 'Bearer ' + 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2b2xjaHVrckBnbWFpbC5jb20iLCJpYXQiOjE2MjEyOTUzOTUsImV4cCI6MTYyMTM4MTc5NX0.suwdiWWkFX1U9qTsux6hwXWQ7M_T6C8EywXBL-4JRA1O85GGI1P3GqJvv5oD0U8nQNxQRQkXSOFscjbZwD8PeQ',
-        //          'Accept' : 'application/json',
-        //         //  'content-type': 'multipart/form-data; boundary=',
-        //         //  'Access-Control-Expose-Headers': 'Authorization',
-        //     },
+        const config ={
+            headers:{
+                Authorization: 'Bearer ' + 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2b2xjaHVrckBnbWFpbC5jb20iLCJpYXQiOjE2MjEzMjk2NjksImV4cCI6MTYyMTQxNjA2OX0.483rl3a0Dh4ShMgxz-NxoEzyNjk4ce4YckDUZoSaf_hTzyfncuDtklQbYeEfn1GLkq5tVB0ShPvz1zN9Y1QosA',
+                 'Accept' : 'application/json',
+                  'Access-Control-Expose-Headers': 'Authorization',
+            },
            
-        // };
-        const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-     
-        const data ={
-            file:formData
-        }
+        }; 
 
+        let email = localStorage.getItem("email");
 
-      
-
-        axios.post('http://localhost:8080/api/file/?email=romvol001@utp.edu.pl&typeOfImage=Avatar&eventId=1',formData,config).then(
+        axios.post('http://localhost:8080/api/file/?email='+email+'&typeOfImage=Avatar&eventId=1',formData, config).then(
            res =>{ 
                console.log(res) 
             if(res.data){
@@ -73,14 +61,13 @@ export default class Avatar extends Component {
     render() {
         return (
             <div style={{marginTop:'12%'}}>
-                {/* image preview */}
-                <img src={this.state.image_preview} alt="image preview"/>
+                <img src={this.state.image_preview} alt="Preview "/>
 
-                {/* image input field */}
                 <input
                     type="file"
                     name ='file'
-                    onChange={this.handleImagePreview}
+                    accept="image/*"
+                    onChange={e => this.handleImagePreview(e)}
                 />
                 <label>Upload file</label>
                 <input type="submit" onClick={this.handleSubmit} value="Submit"/>
