@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+
 export default class MyEvents extends Component {
   constructor(props){
     super(props);
@@ -41,7 +42,7 @@ handleSubmit=e=>{
 const data = {
       email:this.email
 }
-  axios.post('https://pai-event.herokuapp.com/api/event/addUser/'+data.email+'/1',config).then(
+  axios.post('/event/addUser/'+data.email+'/1',config).then(
      res =>{
           localStorage.setItem('eventID',res.data.eventID);
           localStorage.setItem('participationId',res.data.participationId);
@@ -58,7 +59,6 @@ const data = {
      
   ).catch(
       err=>{
-        alert(err.data.errors)
          
           this.setState({errorMessage: err.message})
          
@@ -88,7 +88,7 @@ const data = {
   
 const email = localStorage.getItem('email')
   
-  axios.get('https://pai-event.herokuapp.com/api/user/events/admin/'+email,config).then(
+  axios.get('/user/events/admin/'+email,config).then(
     res => {
         
       localStorage.setItem(res.data.eventID,'eventID')
@@ -103,7 +103,6 @@ const email = localStorage.getItem('email')
     },
     
  err =>{
-  alert(err.data.errors)
     console.log(err)
 }
 )

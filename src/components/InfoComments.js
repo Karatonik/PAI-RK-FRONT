@@ -35,7 +35,7 @@ componentDidMount =()=> {
 
 
   const eventID= this.props.match.params.id
-  axios.get("https://pai-event.herokuapp.com/api/event/"+eventID)
+  axios.get("http://localhost:8080/api/event/"+eventID)
       .then(res => {
           this.setState({ event: res.data });
           console.log(res)
@@ -43,7 +43,7 @@ componentDidMount =()=> {
       })
    
       .catch(error => {
-        alert(error.data.errors)
+
           console.log(error)
       });
 
@@ -59,7 +59,7 @@ componentDidMount =()=> {
   };
 
       
-      axios.get("https://pai-event.herokuapp.com/api/event/comments/"+eventID,config).then(
+      axios.get("http://localhost:8080/api/event/comments/"+eventID,config).then(
       res => {
        
         console.log(res)
@@ -72,7 +72,7 @@ componentDidMount =()=> {
       })
    
       .catch(error => {
-        alert(error.data.errors)
+
           console.log(error)
       });
 
@@ -105,7 +105,7 @@ const data ={
 
 const eventID= this.props.match.params.id
 console.log("Current eventID for comm: ",eventID)
-  axios.post('https://pai-event.herokuapp.com/api/comm/'+email+'/'+eventID+'/'+data.text,config).then(
+  axios.post('/comm/'+email+'/'+eventID+'/'+data.text,config).then(
      res =>{
          
       this.setState({
@@ -122,7 +122,7 @@ console.log("Current eventID for comm: ",eventID)
      
   ).catch(
       err=>{  
-        alert(err.data.errors)
+
           this.setState({errorMessage: err.message})
          
          
@@ -136,7 +136,7 @@ console.log("Current eventID for comm: ",eventID)
 
 deleteComment=(commentId)=>{ 
   let email = localStorage.getItem('email')
-  axios.delete("https://pai-event.herokuapp.com/api/comm/"+commentId+"/"+email)
+  axios.delete("/comm/"+commentId+"/"+email)
   .then(res=>{
       if(res.data){
           this.setState({
@@ -146,7 +146,7 @@ deleteComment=(commentId)=>{
           console.log(res)
       }
       else{
-        alert(res.data.errors)
+     
        alert('Its not your comment!')
        
       }

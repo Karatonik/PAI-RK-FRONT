@@ -35,7 +35,7 @@ export default class Avatar extends Component {
 
         let email = localStorage.getItem("email");
 
-        axios.post('http://localhost:8080/api/file/?email='+email+'&typeOfImage=Avatar&eventId=1',formData, config).then(
+        axios.post('/file/?email='+email+'&typeOfImage=Avatar&eventId=1',formData, config).then(
            res =>{ 
                console.log(res) 
             if(res.data){

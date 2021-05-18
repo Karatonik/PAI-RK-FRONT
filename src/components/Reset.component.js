@@ -16,7 +16,7 @@ export default class Reset extends Component {
      
 
 
-        axios.put('https://pai-event.herokuapp.com/api/user/pwd/'+ data.key +"/"+data.password).then(
+        axios.put('/user/pwd/'+ data.key +"/"+data.password).then(
             res =>{
                 console.log(res);
                 this.setState({
@@ -25,7 +25,6 @@ export default class Reset extends Component {
             }
         ).catch(
             err =>{
-                alert(err.data.errors)
                 this.setState({
                     
                     message:err.response.data.message

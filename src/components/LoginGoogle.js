@@ -27,7 +27,7 @@ export default class LoginGoogle extends Component {
                 nick: data.profileObj.givenName + " " + data.profileObj.familyName
             }
 
-            axios.post('https://pai-event.herokuapp.com/api/auth/external/', body).then(
+            axios.post('/auth/external/', body).then(
                 res => {
                     localStorage.setItem('token', res.data.token);
                     localStorage.setItem('email', res.data.email);       
@@ -39,7 +39,6 @@ export default class LoginGoogle extends Component {
                     window.location.reload();
                 }
             ).catch(err => {
-                alert(err.data.errors)
                 // snackbar
                 this.setState({ errorMessage: err.message })
             })

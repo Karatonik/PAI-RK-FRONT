@@ -16,7 +16,7 @@ export default class Registration extends Component {
             nick:this.nick,
      
         };
-        axios.post('https://pai-event.herokuapp.com/api/auth/singup/',data).then(
+        axios.post('/auth/singup/',data).then(
            res =>{
             localStorage.setItem("status", JSON.stringify(res.data.activated));
             this.setState({    
@@ -31,7 +31,6 @@ export default class Registration extends Component {
         ).catch(
             
             err=>{
-                alert(err.data.errors)
             } 
         )   
     }  

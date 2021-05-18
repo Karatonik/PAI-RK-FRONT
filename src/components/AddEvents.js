@@ -36,7 +36,7 @@ export default class AddEvents extends Component {
             },
            
         };
-         axios.post('https://pai-event.herokuapp.com/api/event/'+data.name+'/'+data.province+'/'+data.city+'/'+data.address+'/'+data.access+'/'+data.dateOfStartEvent+'/'+email,config)
+         axios.post('/event/'+data.name+'/'+data.province+'/'+data.city+'/'+data.address+'/'+data.access+'/'+data.dateOfStartEvent+'/'+email,config)
         .then(
            res =>{
             localStorage.setItem('eventID',JSON.stringify(res.data.eventID));
@@ -57,7 +57,6 @@ export default class AddEvents extends Component {
            
         ).catch(
             err=>{
-                alert(err.data.errors)
                 this.setState({
                    
                     cls:'danger'

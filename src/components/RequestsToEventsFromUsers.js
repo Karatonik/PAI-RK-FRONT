@@ -35,7 +35,7 @@ export default class RequestsToEventsFromUsers extends Component {
             },
            
         };
-        axios.put('https://pai-event.herokuapp.com/api/event/acceptPart/'+participationId+'/'+eventID,config).then(
+        axios.put('/event/acceptPart/'+participationId+'/'+eventID,config).then(
            res =>{
           
             this.setState({
@@ -52,7 +52,6 @@ export default class RequestsToEventsFromUsers extends Component {
            
         ).catch(
             err=>{
-                alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                
@@ -82,7 +81,7 @@ export default class RequestsToEventsFromUsers extends Component {
     
   
     const email = localStorage.getItem('email')
-    axios.get('https://pai-event.herokuapp.com/api/parti/user/'+email,config).then(
+    axios.get('/parti/user/'+email,config).then(
         
       res => {  
       
@@ -97,7 +96,6 @@ export default class RequestsToEventsFromUsers extends Component {
       },
       
    err =>{
-    alert(err.data.errors)
       console.log(err)
   }
   )

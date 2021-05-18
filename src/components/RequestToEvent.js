@@ -36,7 +36,7 @@ export default class RequestToEvent extends Component {
     const eventID= this.props.match.params.id
     
 
-    axios.get('https://pai-event.herokuapp.com/api/parti/event/from/user/'+eventID,config).then(
+    axios.get('/parti/event/from/user/'+eventID,config).then(
     res => {
          
       
@@ -53,7 +53,6 @@ export default class RequestToEvent extends Component {
     },
     
  err =>{
-  alert(err.data.errors)
     console.log(err)
 }
 )

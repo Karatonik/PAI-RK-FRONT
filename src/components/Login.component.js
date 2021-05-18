@@ -16,7 +16,7 @@ export default class Login extends Component {
             
         }
       
-        axios.post('https://pai-event.herokuapp.com/api/auth/singin/',data).then(
+        axios.post('/auth/singin/',data).then(
             res =>{
                
                var activated = res.data.activated;
@@ -33,7 +33,6 @@ export default class Login extends Component {
              
               window.location.reload();
           }else{
-            alert(res.data.errors)
               alert('Konto jeszcze nie zostało aktywowane!Sprawdź swoją skrzyńkę pocztową!');
           }
 

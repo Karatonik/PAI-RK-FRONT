@@ -44,7 +44,7 @@ export default class App extends Component {
       console.log(email);
    
 
-    axios.get('https://pai-event.herokuapp.com/api/user/'+email,config).then(
+    axios.get('/user/'+email,config).then(
         res => {
             
                 this.setState({

@@ -30,7 +30,7 @@ export default class AccepsInvite extends Component {
          
       };
     
-        axios.put('https://pai-event.herokuapp.com/api/user/accept/'+participationId+'/'+email,config).then(
+        axios.put('/user/accept/'+participationId+'/'+email,config).then(
            res =>{
                
       
@@ -49,7 +49,6 @@ export default class AccepsInvite extends Component {
            
         ).catch(
             err=>{
-                alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                

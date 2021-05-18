@@ -31,7 +31,7 @@ export default class AcceptUserToEvent extends Component {
          
       };
     
-        axios.put('https://pai-event.herokuapp.com/api/event/acceptPart/'+participationId+'/'+eventID,config).then(
+        axios.put('/event/acceptPart/'+participationId+'/'+eventID,config).then(
            res =>{
                
             
@@ -49,7 +49,6 @@ export default class AcceptUserToEvent extends Component {
            
         ).catch(
             err=>{
-                alert(err.data.errors)
                 this.setState({errorMessage: err.message})
                
                

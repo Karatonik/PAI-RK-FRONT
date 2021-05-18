@@ -12,7 +12,7 @@ class DeleteAcc extends Component {
     handleSubmit = e =>{
         e.preventDefault();
         const email = localStorage.getItem('email')
-        axios.get("https://pai-event.herokuapp.com/api/mail/delete/"+email)
+        axios.get("/mail/delete/"+email)
         .then(res => {
             this.setState({ event: res.data });
             console.log(res)
@@ -23,7 +23,7 @@ class DeleteAcc extends Component {
         })
      
         .catch(error => {
-            alert(error.data.errors)
+   
             console.log(error)
             
         });

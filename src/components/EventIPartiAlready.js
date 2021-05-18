@@ -32,7 +32,7 @@ export default class EventIPartiAlready extends Component {
   
 const email = localStorage.getItem('email')
   
-  axios.get('https://pai-event.herokuapp.com/api/user/events/user/'+email,config).then(
+  axios.get('/user/events/user/'+email,config).then(
     res => {
         
       localStorage.setItem(res.data.eventID,'eventID')
@@ -47,7 +47,7 @@ const email = localStorage.getItem('email')
     },
     
  err =>{
-  alert(err.data.errors)
+
     console.log(err)
 }
 )
