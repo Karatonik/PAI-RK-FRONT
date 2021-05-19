@@ -70,11 +70,7 @@ export default class AcceptUserToEvent extends Component {
                       Request to join event
                       <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
                                 Yes
-                                </Button>
-                                
-                    <Button onClick={this.close} variant = "outline-danger" style ={{backgroundColor:' #ff6666',margin:'7px'}}>
-                      No
-                    </Button >
+                      </Button>
                  <Icon component= {WarningIcon} style={{marginLeft:"94%"}} />
                  <Icon component= {WarningIcon} style={{marginTop:'-6%'}}/>
                  </Card>

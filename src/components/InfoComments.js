@@ -26,7 +26,7 @@ componentDidMount =()=> {
 
 
   const eventID= this.props.match.params.id
-  axios.get("/api/event/"+eventID)
+  axios.get("/event/"+eventID)
       .then(res => {
           this.setState({ event: res.data });
           console.log(res)
@@ -50,7 +50,7 @@ componentDidMount =()=> {
   };
 
       
-      axios.get("/api/event/comments/"+eventID,config).then(
+      axios.get("/event/comments/"+eventID,config).then(
       res => {
        
         console.log(res)
@@ -172,8 +172,6 @@ render() {
           
       }
 
-
-      
         title= {comment.userEmail} 
         subheader={comment.date.slice(0, comment.date.lastIndexOf("T"))}
       />
@@ -219,7 +217,10 @@ render() {
         </Card>
 
   <Card style={{width:'500px',top:'100px',left:'50px',position:'fixed',backgroundColor:'#D0FFC8'}}>
-      <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/184.jpg' position='top' alt='...' />
+
+      <MDBCardImage  src={"http://localhost:8080/api/file/bg?eventId="+event.eventID} position='top' alt='Brak zdjęcia' />
+
+
       <CardContent>
     <CardHeader style={{textAlign:'center'}}>{event.name}</CardHeader>
     <Typography  style={{textAlign:'center'}}>

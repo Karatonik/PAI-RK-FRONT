@@ -30,14 +30,14 @@ export default class Nav extends Component {
                 <ul className = "navbar-nav">
                   
                     <DropdownButton className='dropdown-content ' id="dropdown-basic-button" title="Menu">
-                        <Dropdown.Item href="/events"><Icon component= {EventIcon}/>Find event</Dropdown.Item>
+                        <Dropdown.Item href="/events"><Icon component= {EventIcon}/>Search</Dropdown.Item>
                         <Dropdown.Item href="/myEvents"><Icon component= {StarIcon}/>Administrated events</Dropdown.Item>
-                        <Dropdown.Item href="/addEvent"><Icon component= {PostAddIcon}/>Create new Event</Dropdown.Item>
-                        <Dropdown.Item href="/requestsFromUsers"><Icon component= {EmailIcon}/>Requests to other events</Dropdown.Item>
-                        <Dropdown.Item href="/invitesFromUsers"><Icon component= {EmailIcon}/>Invites from other events</Dropdown.Item>
-                        <Dropdown.Item href="/eventsIPartiAlready"><Icon component= {EventIcon}/>Events which I participate already</Dropdown.Item>
+                        <Dropdown.Item href="/eventsIPartiAlready"><Icon component= {EventIcon}/>Participated events</Dropdown.Item>
+                        <Dropdown.Item href="/addEvent"><Icon component= {PostAddIcon}/>Create</Dropdown.Item>
+                        <Dropdown.Item href="/requestsFromUsers"><Icon component= {EmailIcon}/>Requests</Dropdown.Item>
+                        <Dropdown.Item href="/invitesFromUsers"><Icon component= {EmailIcon}/>Invites</Dropdown.Item>
                         <Dropdown.Item href="/deleteAcc"><Icon component= {DeleteIcon}/>Delete Account</Dropdown.Item>
-                        <Dropdown.Item href="/addAvatar"><Icon component= {FaceIcon}/>Add avatar</Dropdown.Item>
+                        <Dropdown.Item href="/addAvatar"><Icon component= {FaceIcon}/>Set avatar</Dropdown.Item>
                         <Dropdown.Item href="/" onClick ={this.handleLoguot}>  <Icon component= {ExitToAppIcon}/> Logout</Dropdown.Item>
                        
                     </DropdownButton>
