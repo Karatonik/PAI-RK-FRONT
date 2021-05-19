@@ -27,7 +27,7 @@ export default  class Comment extends React.Component {
           },
          
       };
-       axios.post('http://localhost:8080/api/comm/'+email+'/'+eventId,data,config)
+       axios.post('/api/comm/'+email+'/'+eventId,data,config)
      
   
       .then(
