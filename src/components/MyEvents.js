@@ -170,9 +170,10 @@ const email = localStorage.getItem('email')
                               <StyledTableCell>{event.access}</StyledTableCell>
                               <StyledTableCell>{event.dateOfCreate.replace(/:[^:]*$/,'').replace('T',' ')}</StyledTableCell>    
                               <StyledTableCell>
-                              < Link to={"addUser/"+event.eventID }className= "btn btn-sm btn-outline-primary">Add User </Link>{' '}
-                              < Link to={"showRequests/"+event.eventID }className= "btn btn-sm btn-outline-primary">Show Requests to this event </Link>{' '}
-                              < Link to={'infoComments/'+event.eventID}className= "btn btn-sm btn-outline-primary">Show Info </Link>{' '}
+                              < Link to={"addUser/"+event.eventID }className= "btn btn-sm btn-outline-primary">Add</Link>{' '}
+                              < Link to={"showRequests/"+event.eventID }className= "btn btn-sm btn-outline-primary">Requests</Link>{' '}
+                              < Link to={'infoComments/'+event.eventID}className= "btn btn-sm btn-outline-primary">Show</Link>{' '}
+                              < Link to={'addBg/'+event.eventID}className= "btn btn-sm btn-outline-primary">Set bg</Link>{' '}
                               </StyledTableCell>    
                             </StyledTableRow>
                             

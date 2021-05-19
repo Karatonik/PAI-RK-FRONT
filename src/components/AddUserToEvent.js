@@ -69,17 +69,14 @@ export default class AddUserToEvent extends Component {
                  <Icon  component= {WarningIcon} />
                  <Icon component= {WarningIcon} style={{marginLeft:"94%",marginTop:'-6%'}}/>
                       Email of user, which you  want to invite
-                      <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
-                                Yes
-                                </Button>
+                      
                     <div className = "form-group">
-                  <label>Email</label>
                   <input type = "email" className = "form-control" placeholder = "Email"
                   onChange={e=>this.email=e.target.value}/>
               </div>
-                    <Button onClick={this.close} variant = "outline-danger" style ={{backgroundColor:' #ff6666',margin:'7px'}}>
-                      No
-                    </Button >
+                  <Button   onClick={this.handleSubmit} style ={{backgroundColor:'#007bff',margin:'7px'}}>
+                                Yes
+                  </Button>
                  <Icon component= {WarningIcon} style={{marginLeft:"94%"}} />
                  <Icon component= {WarningIcon} style={{marginTop:'-6%'}}/>
                  </Card>

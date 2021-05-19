@@ -116,8 +116,7 @@ const email = localStorage.getItem('email')
                               <StyledTableCell>{event.address}</StyledTableCell>
                               <StyledTableCell>{event.access}</StyledTableCell>
                               <StyledTableCell>{event.dateOfCreate.replace(/:[^:]*$/,'').replace('T',' ')}</StyledTableCell>   
-                              {/* to do button like info about event, redirect to showInfo */}
-                              < Link to={'infoComments/'+event.eventID}className= "btn btn-sm btn-outline-primary">Show Info </Link>{' '}
+                              < Link to={'infoComments/'+event.eventID}className= "btn btn-sm btn-outline-primary">Show</Link>{' '}
                             </StyledTableRow>
                             
                       ))
