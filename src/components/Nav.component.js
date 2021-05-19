@@ -31,7 +31,7 @@ export default class Nav extends Component {
                   
                     <DropdownButton className='dropdown-content ' id="dropdown-basic-button" title="Menu">
                         <Dropdown.Item href="/events"><Icon component= {EventIcon}/>Find event</Dropdown.Item>
-                        <Dropdown.Item href="/myEvents"><Icon component= {StarIcon}/>Events created by myself</Dropdown.Item>
+                        <Dropdown.Item href="/myEvents"><Icon component= {StarIcon}/>Administrated events</Dropdown.Item>
                         <Dropdown.Item href="/addEvent"><Icon component= {PostAddIcon}/>Create new Event</Dropdown.Item>
                         <Dropdown.Item href="/requestsFromUsers"><Icon component= {EmailIcon}/>Requests to other events</Dropdown.Item>
                         <Dropdown.Item href="/invitesFromUsers"><Icon component= {EmailIcon}/>Invites from other events</Dropdown.Item>

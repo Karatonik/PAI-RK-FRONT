@@ -18,117 +18,66 @@ export default class InfoComments extends Component {
       event: {},
       comments:[],
       updateComm:[],
-      picture:undefined
   }
 }
-
-
-
-
-
-//  getAvatar=()=>{
-//   const config ={
-//     headers:{
-//         Authorization: 'Bearer ' + localStorage.getItem('token'),
-//         'Accept' : 'application/json',
-//         'Content-Type': 'application/json',
-//         'Access-Control-Expose-Headers': 'Authorization'
-//     },
-   
-// };
-
-//   var typicalCat ="https://www.zooplus.pl/magazyn/wp-content/uploads/2019/12/kot-przyb%C5%82%C4%99da-768x512.jpeg";
-  
- 
-
-
-
-// }
-
-
-
-
-
-
-
-
 
   
 componentDidMount =()=> {
 
-  const config ={
-    headers:{
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
-        'Accept' : 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Expose-Headers': 'Authorization'
-    },
-   
-};
-
-
-  axios.get("/file/av?email=mat.kalksztejn@wp.pl",config)
-  .then(res => {
-   console.log(res);
-
-    var arrayBufferView = new Uint8Array( this.res.Body );
-    var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
-    var urlCreator = window.URL || window.webkitURL;
-    var imageUrl = urlCreator.createObjectURL( blob );
-     // this.setState({ event: res.data });
-    
-      console.log(imageUrl);
-      //
-      //return  typicalCat;
-    //  this.setState({ picture: res.data });
-     // console.log(this.state.picture)
-
-      
-  })
-
-  .catch(error => {
-
-      console.log(error)
-     // return  typicalCat;
-  });
-
-
 
   const eventID= this.props.match.params.id
-  axios.get("http://localhost:8080/api/event/"+eventID)
+  axios.get("/api/event/"+eventID)
       .then(res => {
-          this.setState({ event: res.data });  
+          this.setState({ event: res.data });
+          console.log(res)
+          
       })
    
       .catch(error => {
-        console.log(error)
+
+          console.log(error)
       });
 
     // comments   
-  
-      axios.get("http://localhost:8080/api/event/comments/"+eventID,config).then(
+    const config ={
+      headers:{
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+          'Accept' : 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Expose-Headers': 'Authorization'
+      },
+     
+  };
+
+      
+      axios.get("/api/event/comments/"+eventID,config).then(
       res => {
        
-       // console.log(res)
-        this.setState({ comments: res.data });   
+        console.log(res)
+        this.setState({ comments: res.data });
+    
+          console.log("EventID: ",eventID)
+          console.log("All comments: ",res)
+          
+          
       })
    
       .catch(error => {
+
           console.log(error)
       });
 
 
 
-
     
 }
-state={}
+
 handleSubmit=e=>{
   e.preventDefault();
   const email =localStorage.getItem('email');
 
 
- // console.log(email)
+  console.log(email)
 
   const config ={
     headers:{
@@ -152,12 +101,12 @@ console.log("Current eventID for comm: ",eventID)
       this.setState({
       
       })
-      //console.log(res)
+      console.log(res)
           
       
          window.location.reload();
       
-        // console.log(res)
+         console.log(res)
        
      },
      
@@ -184,7 +133,7 @@ deleteComment=(commentId)=>{
               comments:this.state.comments.filter(comment => comment.commentId !== commentId)
 
           });
-        //  console.log(res)
+          console.log(res)
       }
       else{
      
@@ -212,21 +161,23 @@ render() {
    comments.map((comment,index)=>(
  <Card style={{overflow:'auto',borderWidth:0,width:'500px',left:'850px',top:'170px',position:'relative',backgroundColor:'#D0FFC8'}} >
     <CardHeader
-       avatar={
-        <Avatar id="avatar" src ={this.state.picture}/*"https://www.zooplus.pl/magazyn/wp-content/uploads/2019/12/kot-przyb%C5%82%C4%99da-768x512.jpeg"*/
+      avatar={
+        <Avatar id="avatar"  src={"http://localhost:8080/api/file/av?email="+comment.userEmail}
         style={{
 
           width: "60px",
           height: "60px",
-       }}
-         
-         />
+        }}
+          />
           
-       
       }
+
+
+      
         title= {comment.userEmail} 
         subheader={comment.date.slice(0, comment.date.lastIndexOf("T"))}
       />
+      
       <CardContent>
         <Typography >
          {comment.text}
@@ -235,8 +186,10 @@ render() {
       </CardContent>
       <ButtonGroup>
           <IconButton aria-label="delete" variant = "outline-danger" onClick={this.deleteComment.bind(this,comment.commentId)}>  
+        
              <DeleteIcon />
         </IconButton>
+
         </ButtonGroup>
     </Card>
        ))
