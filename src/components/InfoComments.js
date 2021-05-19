@@ -21,21 +21,12 @@ export default class InfoComments extends Component {
   }
 }
 
-
-
-
-
-
-
-
-
-
   
 componentDidMount =()=> {
 
 
   const eventID= this.props.match.params.id
-  axios.get("http://localhost:8080/api/event/"+eventID)
+  axios.get("/api/event/"+eventID)
       .then(res => {
           this.setState({ event: res.data });
           console.log(res)
@@ -59,7 +50,7 @@ componentDidMount =()=> {
   };
 
       
-      axios.get("http://localhost:8080/api/event/comments/"+eventID,config).then(
+      axios.get("/api/event/comments/"+eventID,config).then(
       res => {
        
         console.log(res)
@@ -78,10 +69,9 @@ componentDidMount =()=> {
 
 
 
-
     
 }
-state={}
+
 handleSubmit=e=>{
   e.preventDefault();
   const email =localStorage.getItem('email');
@@ -171,14 +161,23 @@ render() {
    comments.map((comment,index)=>(
  <Card style={{overflow:'auto',borderWidth:0,width:'500px',left:'850px',top:'170px',position:'relative',backgroundColor:'#D0FFC8'}} >
     <CardHeader
-       avatar={
-        <Avatar aria-label="recipe">
-          R
-        </Avatar>
+      avatar={
+        <Avatar id="avatar"  src={"https://pai-event.herokuapp.com/api/file/av?email="+comment.userEmail}
+        style={{
+
+          width: "60px",
+          height: "60px",
+        }}
+          />
+          
       }
+
+
+      
         title= {comment.userEmail} 
         subheader={comment.date.slice(0, comment.date.lastIndexOf("T"))}
       />
+      
       <CardContent>
         <Typography >
          {comment.text}
@@ -187,8 +186,10 @@ render() {
       </CardContent>
       <ButtonGroup>
           <IconButton aria-label="delete" variant = "outline-danger" onClick={this.deleteComment.bind(this,comment.commentId)}>  
+        
              <DeleteIcon />
         </IconButton>
+
         </ButtonGroup>
     </Card>
        ))

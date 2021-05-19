@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
 
-axios.defaults.baseURL = 'https://pai-event.herokuapp.com/api'
+axios.defaults.baseURL = 'http://localhost:8080/api'
 
+//axios.defaults.baseURL = 'https://pai-event.herokuapp.com/'
 
 ReactDOM.render(
   <React.StrictMode>
