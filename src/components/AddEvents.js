@@ -6,6 +6,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
+import Geocode from "react-geocode";
 
 
 
@@ -36,41 +37,55 @@ export default class AddEvents extends Component {
             },
            
         };
-         axios.post('/event/'+data.name+'/'+data.province+'/'+data.city+'/'+data.address+'/'+data.access+'/'+data.dateOfStartEvent+'/'+email,config)
-        .then(
-           res =>{
-            localStorage.setItem('eventID',JSON.stringify(res.data.eventID));
-            const eventID = JSON.parse(localStorage.getItem('eventID'))
-            console.log(eventID);
+
+    
+        //pobierz x,y i google api
+         Geocode.setApiKey("AIzaSyCgkC_3_rykQnWFY3DQu7XdMZPt7TFXEHs");
+         Geocode.enableDebug();
+ 
+         Geocode.fromAddress(data.province+" "+data.city+" "+data.address).then(
+            gRes=>{
+                var x =gRes.results[0].geometry.location.lat;
+                var y =gRes.results[0].geometry.location.lng;
+                //prześlij eventu do rest api
+                axios.post('/event/'+data.name+'/'+data.province+'/'+data.city+'/'+data.address+'/'+data.access+'/'+data.dateOfStartEvent+'/'+email+'/'+x+'/'+y,config)
+                .then(res =>{
+                    localStorage.setItem('eventID',JSON.stringify(res.data.eventID));
+                    const eventID = JSON.parse(localStorage.getItem('eventID'))
+                    console.log(eventID);
           
-            this.setState({
-                 
-                
-                message:res.data.message,
-                cls:'success'
-            });
-           
-               console.log(res)
-               alert("Event created succeffully!")
-             window.location.reload();
-           } 
-           
-        ).catch(
-            err=>{
-                this.setState({
-                   
-                    cls:'danger'
-                })
-            }
+                    this.setState({
+                        message:res.data.message,
+                        cls:'success'
+                    });
+                    console.log(res)
+                    alert("Event created succeffully!")
+
+                    window.location.reload();
+                } 
+                //nie zapisanu rekordu
+                ).catch(
+                    err=>{
+                        this.setState({
+                        cls:'danger'
+                        })
+                    }
             
-        )
-        
-        
-        
+                )
+         
+            }
+            //nie znaleziono adresu
+            ).catch(
+                err=>{
+                alert("Address not found")
+                    }
+    
+                )
     }
     render() {
        
         return (
+                
             <Card style={{backgroundColor:'#D0FFC8',marginTop:'12%'}} >
             <Card.Header><Icon component= {AddBoxIcon} style={{marginLeft:'-90%'}}/>Create your Event!</Card.Header>  
                <Form onSubmit={this.handleSubmit}>

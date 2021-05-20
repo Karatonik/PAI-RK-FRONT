@@ -20,6 +20,7 @@ export default class AddBgEvent extends Component {
     }
     
     handleSubmit=()=>{
+        const eventID= this.props.match.params.id
         if (this.state.image_file !== null){
         let formData = new FormData()
         formData.append('file', this.state.image_file);
@@ -32,10 +33,10 @@ export default class AddBgEvent extends Component {
             },
            
         }; 
-
+        
         let email = localStorage.getItem("email");
 
-        axios.post('/file/?email='+email+'&typeOfImage=Background&eventId=1',formData, config).then(
+        axios.post('/file/?email='+email+'&typeOfImage=Background&eventId='+eventID,formData, config).then(
            res =>{ 
                console.log(res) 
             if(res.data){

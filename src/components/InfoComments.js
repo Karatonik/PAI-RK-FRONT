@@ -72,6 +72,8 @@ componentDidMount =()=> {
     
 }
 
+
+
 handleSubmit=e=>{
   e.preventDefault();
   const email =localStorage.getItem('email');
@@ -173,7 +175,7 @@ render() {
       }
 
         title= {comment.userEmail} 
-        subheader={comment.date.slice(0, comment.date.lastIndexOf("T"))}
+        subheader={comment.date.slice(0,16).replace('T',' ')}
       />
       
       <CardContent>

@@ -26,7 +26,7 @@ export default class MyGoogleMap extends Component {
 
             <GoogleMap
 
-                defaultZoom={8}
+                defaultZoom={7}
 
                 defaultCenter={{ lat: props.mapCenter.x, lng: props.mapCenter.y }}
 
@@ -67,9 +67,9 @@ export default class MyGoogleMap extends Component {
 
                 loadingElement={<div style={{ height: `100%` }} />}
 
-                containerElement={<div style={{ height: `400px` }} />}
+                containerElement={<div style={{ height: `600px` }} />}
 
-                mapElement={<div style={{ height: `100%` }} />}
+                mapElement={<div style={{ height: `100%`}} />}
 
                 markers={this.props.markers}
 

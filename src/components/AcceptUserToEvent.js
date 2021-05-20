@@ -41,8 +41,7 @@ export default class AcceptUserToEvent extends Component {
             })
            
               
-                // window.location.reload();
-                // <Redirect to ={'/showRequests/:id'}/>
+                this.props.history.goBack();
                console.log(res)
              
            },
