@@ -8,7 +8,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:8080/api'
 
-//axios.defaults.baseURL = 'https://pai-event.herokuapp.com/'
+//axios.defaults.baseURL = 'https://pai-event.herokuapp.com/api'
 
 ReactDOM.render(
   <React.StrictMode>

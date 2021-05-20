@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import MyGoogleMap from './MyGoogleMap';
 export default class EventPage extends Component {
   constructor(props){
     super(props);
@@ -16,10 +17,15 @@ export default class EventPage extends Component {
     show: false,
     search:'',
     events:[],
+    markers:[],
     currentPage:1,
     partyPerPage:5
   }
 }
+
+
+
+
 
 
 handleSubmit=e=>{
@@ -116,6 +122,20 @@ const data = {
     });
   };
 
+
+
+
+  getMarkers=()=>{
+    return this.state.events.map(e =>({name:e.eventID+" Nazwa:"+e.name+" Adres: "+e.address+" Status:"+e.access , x:e.x, y:e.y}));
+  }
+
+  onMarkerClick=(e)=>{
+    console.log(e.name);//zwraca name 
+    var ad = ""
+    ad = e.name;
+    //przenoszenie do eventu
+    this.props.history.push("event/"+ad.substr(0,ad.indexOf(" ")));
+  }
     render() {
         const {events} =this.state;
  
@@ -141,7 +161,15 @@ const data = {
       }))(TableRow);
 
         return (
-          <TableContainer component={Paper} elevation={0} style={{marginTop:'12%'}}>
+         
+          <TableContainer component={Paper} elevation={0} style={{marginTop:'4%'}}>
+               <MyGoogleMap 
+         markerClick={e=> this.onMarkerClick(e)} 
+         markers={this.getMarkers()}
+         onMapClick={this.test}
+         mapCenter={{ x: 51.9189, y: 19.1344}} 
+       />
+
               <Table className='ui-table zui-table-horizontal zui-table-highlight'>
                 <TableHead  > 
                   <TableRow  >   
@@ -175,6 +203,7 @@ const data = {
                  </TableBody>    
               </Table>
               </TableContainer>
+           
         );
         
     }
