@@ -22,6 +22,7 @@ export default class Forgot extends Component {
                     successMessage:"Success: You have been successfully reseted!"
                 })
                 console.log(res)
+                alert("Sprawdź skrzynkę mailową!")
             }
         ).catch(
             err =>{

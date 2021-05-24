@@ -32,7 +32,7 @@ export default class AddUserToEvent extends Component {
       const data = {
             email:this.email
       }
-        axios.post('/api/event/addUser/'+data.email+'/'+eventID,config).then(
+        axios.post('/event/addUser/'+data.email+'/'+eventID,config).then(
            res =>{
               
 
@@ -41,11 +41,9 @@ export default class AddUserToEvent extends Component {
                 
             })
            
-            //   setTimeout(() => {
-            //     window.location.reload();
-            //   }, 1500);
                console.log(res)
-             
+                alert("Zaproszenia zostało wysłane!")
+                window.location.reload();
            },
            
         ).catch(

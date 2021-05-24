@@ -190,11 +190,11 @@ export default class MyInvites extends Component {
                                  <StyledTableCell>{invite.eventPAIDto.city}</StyledTableCell>
                                  <StyledTableCell>{invite.eventPAIDto.province}</StyledTableCell>
                                  <StyledTableCell>{invite.eventPAIDto.access}</StyledTableCell>
-                                 <StyledTableCell>{invite.eventPAIDto.address}</StyledTableCell>
+                                 <StyledTableCell>{invite.eventPAIDto.address.slice(0,16).replace('T',' ')}</StyledTableCell>
                                 
-                                 <StyledTableCell>{invite.eventPAIDto.dateOfCreate}</StyledTableCell>
+                                 <StyledTableCell>{invite.eventPAIDto.dateOfCreate.slice(0,16).replace('T',' ')}</StyledTableCell>
                                  <StyledTableCell>{invite.eventPAIDto.dateOfStarEvent}</StyledTableCell>
-                              < Link to={"acceptInvite/"+invite.participationId}className= "btn btn-sm btn-outline-primary">Accept Invite </Link>{' '}
+                              < Link to={"acceptInvite/"+invite.participationId}className= "btn btn-sm btn-outline-primary">Accept Invite </Link>
                             
                                            
                             </StyledTableRow>

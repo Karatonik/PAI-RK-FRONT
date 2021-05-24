@@ -20,6 +20,7 @@ class DeleteAcc extends Component {
             this.props.setUser(null);
         
             this.props.history.push("/");
+            alert('Sprawdź skrzynkę mailową!')
         })
      
         .catch(error => {

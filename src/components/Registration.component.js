@@ -29,8 +29,9 @@ export default class Registration extends Component {
            },
            
         ).catch(
-            
+      
             err=>{
+                alert("Hasło musi zawierać przynajmniej 8 znaków!")
             } 
         )   
     }  
