@@ -15,7 +15,7 @@ export default class LoginGoogle extends Component {
 
     handleResponse = (data) => {
 
-        if (data.profileObj.email &&
+        if (data && data.profileObj && data.profileObj.email &&
             data.profileObj.googleId && 
             data.accessToken && 
             data.profileObj.familyName &&
